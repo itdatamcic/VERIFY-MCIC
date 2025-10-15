@@ -35,6 +35,7 @@
             flex-direction: row;
             max-width: 900px;
             width: 100%;
+            position: relative; /* Added for language switcher positioning */
         }
         .register-image-side {
             background: url('https://img2.pic.in.th/pic/Gemini_Generated_Image_rqnmqyrqnmqyrqnm.png') center/cover;
@@ -120,15 +121,40 @@
             color: #495057;
             font-size: 0.9rem;
             cursor: pointer;
+            text-align: left;
         }
         .custom-control-input:checked~.custom-control-label::before {
             border-color: #1E8449;
             background-color: #28B463;
         }
+        /* -- NEW: Language Switcher Styles -- */
+        .lang-switcher {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            background-color: #f1f1f1;
+            border-radius: 20px;
+            padding: 4px;
+            display: flex;
+        }
+        .lang-btn {
+            padding: 6px 14px;
+            text-decoration: none;
+            color: #555;
+            font-weight: 700;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        .lang-btn.active {
+            background-color: #fff;
+            color: #1E8449;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
         @media (max-width: 768px) {
             .register-image-side { display: none; }
             .register-form-side { width: 100%; padding: 2rem; }
             .register-card { flex-direction: column; }
+            .lang-switcher { top: 0.75rem; right: 1rem; }
         }
     </style>
 </head>
@@ -137,25 +163,30 @@
 <div class="register-card">
     <div class="register-image-side"></div>
     <div class="register-form-side">
+        <div class="lang-switcher">
+            <a href="#" onclick="setLanguage('th'); return false;" class="lang-btn" id="lang-th">TH</a>
+            <a href="#" onclick="setLanguage('en'); return false;" class="lang-btn" id="lang-en">EN</a>
+        </div>
+
         <div class="text-center mb-4">
-            <img src="https://img5.pic.in.th/file/secure-sv1/logopng2.png" alt="Company Logo" style="max-width: 250px; margin-bottom: 1.5rem;">
-            <h3 class="card-title">ยืนยันตัวตนพนักงาน</h3>
-            <p class="card-subtitle">กรุณากรอกข้อมูลด้วยไลน์ตัวเอง!</p>
+            <img src="https://img5.pic.in.th/file/secure-sv1/imagesb3c4799b9ccf48d6.jpg" alt="Company Logo" style="max-width: 200px; margin-bottom: 1.5rem;">
+            <h3 class="card-title" data-lang-key="formTitle"></h3>
+            <p class="card-subtitle" data-lang-key="formSubtitle"></p>
         </div>
 
         <form method="post" autocomplete="off" name="hello-sheet" id="registerForm">
             <div class="mb-3">
-                <label for="IdEmployee" class="form-label">Employee ID</label>
+                <label for="IdEmployee" class="form-label" data-lang-key="labelEmployeeId"></label>
                 <div class="input-group">
                     <div class="input-group-prepend"><span class="input-group-text"><i class="fa-solid fa-id-card-clip"></i></span></div>
-                    <input type="text" class="form-control" id="IdEmployee" placeholder="รหัสพนักงาน" name="รหัสพนักงาน" required>
+                    <input type="text" class="form-control" id="IdEmployee" name="รหัสพนักงาน" required>
                 </div>
             </div>
-             <div class="mb-3">
-                <label for="fullName" class="form-label">Full Name</label>
+            <div class="mb-3">
+                <label for="fullName" class="form-label" data-lang-key="labelFullName"></label>
                 <div class="input-group">
                     <div class="input-group-prepend"><span class="input-group-text"><i class="fa-solid fa-user"></i></span></div>
-                    <input type="text" class="form-control" id="fullName" placeholder="ชื่อ-สกุล (จะแสดงอัตโนมัติเมื่อกรอกรหัสพนักงาน)" name="ชื่อ-สกุล" required readonly>
+                    <input type="text" class="form-control" id="fullName" name="ชื่อ-สกุล" required readonly>
                 </div>
             </div>
             
@@ -163,17 +194,15 @@
             <input type="hidden" name="profile" id="profile">
             
             <div class="consent-section">
-                <h5 class="consent-title"><i class="fa-solid fa-shield-halved"></i> รับทราบข้อกำหนด</h5>
+                <h5 class="consent-title" data-lang-key="consentTitle"><i class="fa-solid fa-shield-halved"></i> </h5>
                 <div class="custom-control custom-switch">
                     <input type="checkbox" class="custom-control-input" id="consentCheck" name="consent" value="รับทราบ" required>
-                    <label class="custom-control-label" for="consentCheck">
-                        การยืนยันตัวตนพนักงาน เพื่อรับข่าวสารต่างๆ และสิทธิประโยชน์อื่นๆที่พนักงานได้รับผ่านช่องทาง Line : HR-JMT
-                    </label>
+                    <label class="custom-control-label" for="consentCheck" data-lang-key="consentLabel"></label>
                 </div>
             </div>
 
             <div class="text-center mt-4">
-                <button type="submit" class="btn btn-success fw-bold w-100" id="registerBtn" disabled>บันทึกข้อมูล</button>
+                <button type="submit" class="btn btn-success fw-bold w-100" id="registerBtn" data-lang-key="submitButton" disabled></button>
             </div>
         </form>
     </div>
@@ -181,6 +210,111 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+    // --- NEW: Language Translation Object ---
+    const translations = {
+        en: {
+            pageTitle: "Employee Verification",
+            formTitle: "Employee Verification",
+            formSubtitle: "Please use your own LINE account to register!",
+            labelEmployeeId: "Employee ID",
+            placeholderEmployeeId: "Employee ID",
+            labelFullName: "Full Name",
+            placeholderFullName: "Full Name (will auto-fill after entering ID)",
+            consentTitle: " Acknowledge Terms",
+            consentLabel: "This verification is for receiving company news and other benefits via Line: MCIC_HR_NEWS.",
+            submitButton: "Save Data",
+            saVerifying: "Verifying Employee ID...",
+            saRegisteredTitle: "Already Registered",
+            saRegisteredText: "This Employee ID is already registered in the system.",
+            saNotFoundTitle: "Not Found",
+            saNotFoundText: "This Employee ID was not found. Please check and try again.",
+            saErrorTitle: "An Error Occurred",
+            saConnectionError: "Could not connect to the server.",
+            saInvalidIdTitle: "Invalid Employee ID",
+            saInvalidIdText: "Please enter a valid Employee ID and wait for name verification.",
+            saIncompleteDataTitle: "Incomplete Information",
+            saIncompleteDataText: "Please fill in all fields and give consent before saving.",
+            saSavingTitle: "Verifying and saving data...",
+            saSavingText: "Please wait.",
+            saSuccessTitle: "Data Saved Successfully!",
+            saSuccessText: "Your information has been saved.",
+            saDuplicateUser: "You have already verified your identity. To edit, please contact HR.",
+            saDuplicateEmpId: "This Employee ID has been registered. Please contact HR.",
+            saInvalidEmpId: "Your Employee ID was not found in the system. Please check again.",
+            saConsentRequired: "Error: Please check the consent box before saving.",
+            saGenericErrorTitle: "An Error Occurred!",
+            saGenericErrorText: "Could not save data: "
+        },
+        th: {
+            pageTitle: "ยืนยันตัวตนพนักงาน",
+            formTitle: "ยืนยันตัวตนพนักงาน",
+            formSubtitle: "กรุณากรอกข้อมูลด้วยไลน์ตัวเอง!",
+            labelEmployeeId: "Employee ID",
+            placeholderEmployeeId: "รหัสพนักงาน",
+            labelFullName: "Full Name",
+            placeholderFullName: "ชื่อ-สกุล (จะแสดงอัตโนมัติเมื่อกรอกรหัสพนักงาน)",
+            consentTitle: " รับทราบข้อกำหนด",
+            consentLabel: "การยืนยันตัวตนพนักงาน เพื่อรับข่าวสารต่างๆ และสิทธิประโยชน์อื่นๆที่พนักงานได้รับผ่านช่องทาง Line : MCIC_HR_NEWS",
+            submitButton: "บันทึกข้อมูล",
+            saVerifying: "กำลังตรวจสอบรหัสพนักงาน...",
+            saRegisteredTitle: "ลงทะเบียนแล้ว",
+            saRegisteredText: "รหัสพนักงานนี้ได้ลงทะเบียนในระบบแล้ว",
+            saNotFoundTitle: "ไม่พบข้อมูล",
+            saNotFoundText: "ไม่พบรหัสพนักงานนี้ในระบบ กรุณาตรวจสอบอีกครั้ง",
+            saErrorTitle: "เกิดข้อผิดพลาด",
+            saConnectionError: "ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้",
+            saInvalidIdTitle: "รหัสพนักงานไม่ถูกต้อง",
+            saInvalidIdText: "กรุณากรอกรหัสพนักงานที่ถูกต้องและรอให้ระบบตรวจสอบชื่อ-สกุลให้เรียบร้อยก่อน",
+            saIncompleteDataTitle: "ข้อมูลไม่ครบถ้วน",
+            saIncompleteDataText: "กรุณากรอกข้อมูลและทำเครื่องหมายยินยอมให้ครบถ้วนก่อน",
+            saSavingTitle: "กำลังตรวจสอบและบันทึกข้อมูล...",
+            saSavingText: "กรุณารอสักครู่",
+            saSuccessTitle: "บันทึกข้อมูลสำเร็จ!",
+            saSuccessText: "ข้อมูลของคุณถูกบันทึกในระบบเรียบร้อยแล้ว",
+            saDuplicateUser: "คุณได้ยืนยันตัวตนไว้ในระบบแล้ว หากต้องการแก้ไขข้อมูลกรุณาติดต่อฝ่ายบุคคล",
+            saDuplicateEmpId: "รหัสพนักงานนี้ได้ถูกลงทะเบียนแล้ว กรุณาติดต่อฝ่ายบุคคล",
+            saInvalidEmpId: "ไม่พบรหัสพนักงานของคุณในระบบ กรุณาตรวจสอบอีกครั้ง",
+            saConsentRequired: "เกิดข้อผิดพลาด: กรุณาทำเครื่องหมายยินยอมก่อนบันทึก",
+            saGenericErrorTitle: "เกิดข้อผิดพลาด!",
+            saGenericErrorText: "ไม่สามารถบันทึกข้อมูลได้: "
+        }
+    };
+    let currentLangTexts = {}; // To hold the text of the selected language
+
+    // --- NEW: Function to set the language ---
+    function setLanguage(lang) {
+        if (!translations[lang]) return;
+        localStorage.setItem('userLanguage', lang);
+        currentLangTexts = translations[lang];
+
+        // Set page title
+        document.title = currentLangTexts.pageTitle;
+
+        // Set text for all elements with data-lang-key attribute
+        document.querySelectorAll('[data-lang-key]').forEach(el => {
+            const key = el.getAttribute('data-lang-key');
+            if (currentLangTexts[key]) {
+                if(el.tagName === 'BUTTON'){
+                    el.textContent = currentLangTexts[key];
+                } else if(el.dataset.langKey === 'consentTitle'){
+                    el.innerHTML = `<i class="fa-solid fa-shield-halved"></i>${currentLangTexts[key]}`;
+                } 
+                else {
+                    el.textContent = currentLangTexts[key];
+                }
+            }
+        });
+
+        // Set placeholders
+        document.getElementById('IdEmployee').placeholder = currentLangTexts.placeholderEmployeeId;
+        document.getElementById('fullName').placeholder = currentLangTexts.placeholderFullName;
+
+        // Update active button style
+        document.getElementById('lang-th').classList.toggle('active', lang === 'th');
+        document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+    }
+
+
     // --- LIFF Initialization ---
     async function main() {
         await liff.init({ liffId: "2008254230-mXa6NopA" }); // ◀️ **สำคัญ:** ใส่ LIFF ID ของคุณที่นี่
@@ -204,7 +338,7 @@
     
     let isIdVerified = false;
 
-    // --- ฟังก์ชันสำหรับอัปเดตสถานะปุ่ม ---
+    // --- Function to update button state ---
     function updateButtonState() {
         registerBtn.disabled = !(consentCheckbox.checked && isIdVerified);
     }
@@ -225,7 +359,7 @@
         formData.append('employeeId', employeeId);
 
         Swal.fire({
-            title: 'กำลังตรวจสอบรหัสพนักงาน...',
+            title: currentLangTexts.saVerifying, // <-- MODIFIED
             allowOutsideClick: false,
             didOpen: () => { Swal.showLoading(); }
         });
@@ -238,21 +372,21 @@
                     fullNameInput.value = data.name;
                     isIdVerified = true;
                 } else if (data.error === 'duplicate_employee_id') {
-                    Swal.fire('ลงทะเบียนแล้ว', 'รหัสพนักงานนี้ได้ลงทะเบียนในระบบแล้ว', 'warning');
+                    Swal.fire(currentLangTexts.saRegisteredTitle, currentLangTexts.saRegisteredText, 'warning'); // <-- MODIFIED
                 } else {
-                    Swal.fire('ไม่พบข้อมูล', 'ไม่พบรหัสพนักงานนี้ในระบบ กรุณาตรวจสอบอีกครั้ง', 'error');
+                    Swal.fire(currentLangTexts.saNotFoundTitle, currentLangTexts.saNotFoundText, 'error'); // <-- MODIFIED
                 }
                 updateButtonState();
             })
             .catch(error => {
-                Swal.fire('เกิดข้อผิดพลาด', 'ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้', 'error');
+                Swal.fire(currentLangTexts.saErrorTitle, currentLangTexts.saConnectionError, 'error'); // <-- MODIFIED
                 console.error('Error fetching employee name:', error);
                 isIdVerified = false;
                 updateButtonState();
             });
     });
     
-    // --- รีเซ็ตสถานะเมื่อผู้ใช้กลับไปแก้ไขรหัส ---
+    // --- Reset status when user edits the ID ---
     employeeIdInput.addEventListener('input', function() {
         if (isIdVerified) {
             isIdVerified = false;
@@ -271,18 +405,18 @@
         e.preventDefault();
         
         if (!isIdVerified) {
-             Swal.fire('รหัสพนักงานไม่ถูกต้อง', 'กรุณากรอกรหัสพนักงานที่ถูกต้องและรอให้ระบบตรวจสอบชื่อ-สกุลให้เรียบร้อยก่อน', 'warning');
-             return;
+            Swal.fire(currentLangTexts.saInvalidIdTitle, currentLangTexts.saInvalidIdText, 'warning'); // <-- MODIFIED
+            return;
         }
 
         if (!form.checkValidity()) {
-            Swal.fire('ข้อมูลไม่ครบถ้วน', 'กรุณากรอกข้อมูลและทำเครื่องหมายยินยอมให้ครบถ้วนก่อน', 'warning');
+            Swal.fire(currentLangTexts.saIncompleteDataTitle, currentLangTexts.saIncompleteDataText, 'warning'); // <-- MODIFIED
             return;
         }
         
         Swal.fire({
-            title: 'กำลังตรวจสอบและบันทึกข้อมูล...',
-            text: 'กรุณารอสักครู่',
+            title: currentLangTexts.saSavingTitle, // <-- MODIFIED
+            text: currentLangTexts.saSavingText,   // <-- MODIFIED
             allowOutsideClick: false,
             didOpen: () => { Swal.showLoading(); }
         });
@@ -295,8 +429,10 @@
             .then(data => {
                 if (data.result === 'success') {
                     Swal.fire({
-                        position: 'center', icon: 'success', title: 'บันทึกข้อมูลสำเร็จ!',
-                        text: 'ข้อมูลของคุณถูกบันทึกในระบบเรียบร้อยแล้ว', showConfirmButton: false, timer: 2500
+                        position: 'center', icon: 'success', 
+                        title: currentLangTexts.saSuccessTitle, // <-- MODIFIED
+                        text: currentLangTexts.saSuccessText,   // <-- MODIFIED
+                        showConfirmButton: false, timer: 2500
                     }).then(() => {
                         if(liff.isInClient()) {
                             liff.closeWindow();
@@ -305,24 +441,30 @@
                         }
                     });
                 } else if (data.error === 'duplicate_user') {
-                    Swal.fire('ลงทะเบียนแล้ว', 'คุณได้ยืนยันตัวตนไว้ในระบบแล้ว หากต้องการแก้ไขข้อมูลกรุณาติดต่อฝ่ายบุคคล', 'warning');
+                    Swal.fire(currentLangTexts.saRegisteredTitle, currentLangTexts.saDuplicateUser, 'warning'); // <-- MODIFIED
                 } else if (data.error === 'duplicate_employee_id') {
-                    Swal.fire('ลงทะเบียนแล้ว', 'รหัสพนักงานนี้ได้ถูกลงทะเบียนแล้ว กรุณาติดต่อฝ่ายบุคคล', 'error');
+                    Swal.fire(currentLangTexts.saRegisteredTitle, currentLangTexts.saDuplicateEmpId, 'error'); // <-- MODIFIED
                 } else if (data.error === 'invalid_employee_id') {
-                    Swal.fire('รหัสพนักงานไม่ถูกต้อง', 'ไม่พบรหัสพนักงานของคุณในระบบ กรุณาตรวจสอบอีกครั้ง', 'error');
+                    Swal.fire(currentLangTexts.saInvalidIdTitle, currentLangTexts.saInvalidEmpId, 'error'); // <-- MODIFIED
                 } else if (data.error === 'consent_required') {
-                    Swal.fire('ไม่ได้รับความยินยอม', 'เกิดข้อผิดพลาด: กรุณาทำเครื่องหมายยินยอมก่อนบันทึก', 'error');
+                    Swal.fire(currentLangTexts.saErrorTitle, currentLangTexts.saConsentRequired, 'error'); // <-- MODIFIED
                 } else {
                     throw new Error(data.error || 'Something went wrong');
                 }
             })
             .catch(error => {
                 console.error('Error!', error.message);
-                Swal.fire('เกิดข้อผิดพลาด!', `ไม่สามารถบันทึกข้อมูลได้: ${error.message}`, 'error');
+                Swal.fire(currentLangTexts.saGenericErrorTitle, `${currentLangTexts.saGenericErrorText}${error.message}`, 'error'); // <-- MODIFIED
             });
     });
+
+    // --- NEW: Initialize language on page load ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('userLanguage') || 'th'; // Default to Thai
+        setLanguage(savedLang);
+    });
+
 </script>
 
 </body>
 </html>
-
