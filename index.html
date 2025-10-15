@@ -160,6 +160,7 @@
             </div>
             
             <input type="hidden" name="userID" id="userID">
+            <input type="hidden" name="profile" id="profile">
             
             <div class="consent-section">
                 <h5 class="consent-title"><i class="fa-solid fa-shield-halved"></i> รับทราบข้อกำหนด</h5>
@@ -188,6 +189,7 @@
         } else {
             const profile = await liff.getProfile();
             document.getElementById('userID').value = profile.userId;
+            document.getElementById('profile').value = profile.pictureUrl;
         }
     }
     main();
@@ -200,7 +202,7 @@
     const employeeIdInput = document.getElementById('IdEmployee');
     const fullNameInput = document.getElementById('fullName');
     
-    let isIdVerified = false; // [เพิ่ม] สร้างตัวแปรสถานะ
+    let isIdVerified = false;
 
     // --- ฟังก์ชันสำหรับอัปเดตสถานะปุ่ม ---
     function updateButtonState() {
@@ -210,7 +212,6 @@
     // --- Employee ID Verification ---
     employeeIdInput.addEventListener('blur', function() {
         const employeeId = this.value.trim();
-        // [แก้ไข] รีเซ็ตสถานะทุกครั้งที่ตรวจสอบ
         isIdVerified = false; 
         fullNameInput.value = '';
         updateButtonState();
@@ -235,23 +236,23 @@
                 Swal.close();
                 if (data.result === 'success') {
                     fullNameInput.value = data.name;
-                    isIdVerified = true; // [แก้ไข] ตั้งค่าสถานะเป็น true เมื่อสำเร็จ
+                    isIdVerified = true;
                 } else if (data.error === 'duplicate_employee_id') {
                     Swal.fire('ลงทะเบียนแล้ว', 'รหัสพนักงานนี้ได้ลงทะเบียนในระบบแล้ว', 'warning');
                 } else {
                     Swal.fire('ไม่พบข้อมูล', 'ไม่พบรหัสพนักงานนี้ในระบบ กรุณาตรวจสอบอีกครั้ง', 'error');
                 }
-                updateButtonState(); // [แก้ไข] อัปเดตสถานะปุ่มหลัง fetch
+                updateButtonState();
             })
             .catch(error => {
                 Swal.fire('เกิดข้อผิดพลาด', 'ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้', 'error');
                 console.error('Error fetching employee name:', error);
-                isIdVerified = false; // [แก้ไข] รีเซ็ตสถานะหากเกิดข้อผิดพลาด
+                isIdVerified = false;
                 updateButtonState();
             });
     });
     
-    // [เพิ่ม] รีเซ็ตสถานะเมื่อผู้ใช้กลับไปแก้ไขรหัส
+    // --- รีเซ็ตสถานะเมื่อผู้ใช้กลับไปแก้ไขรหัส ---
     employeeIdInput.addEventListener('input', function() {
         if (isIdVerified) {
             isIdVerified = false;
@@ -262,14 +263,13 @@
 
     // --- Consent & Submit Button ---
     consentCheckbox.addEventListener('change', function() {
-        updateButtonState(); // [แก้ไข] เรียกใช้ฟังก์ชันกลาง
+        updateButtonState();
     });
 
     // --- Form Submission ---
     form.addEventListener('submit', e => {
         e.preventDefault();
         
-        // [แก้ไข] เพิ่มการตรวจสอบสถานะ isIdVerified ก่อนส่ง
         if (!isIdVerified) {
              Swal.fire('รหัสพนักงานไม่ถูกต้อง', 'กรุณากรอกรหัสพนักงานที่ถูกต้องและรอให้ระบบตรวจสอบชื่อ-สกุลให้เรียบร้อยก่อน', 'warning');
              return;
