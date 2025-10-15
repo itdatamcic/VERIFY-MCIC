@@ -13,9 +13,7 @@
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
     <style>
-        /* CSS ที่ปรับปรุงใหม่ */
         body {
-            /* ✨ ใช้ Font Sarabun */
             font-family: 'Sarabun', sans-serif;
             background-image: url('https://img2.pic.in.th/pic/Cover808900978ea91797.jpg');
             background-size: cover;
@@ -28,7 +26,7 @@
             padding: 1rem;
         }
         .register-card {
-            background-color: rgba(255, 255, 255, 0.98); /* เพิ่มความทึบเล็กน้อย */
+            background-color: rgba(255, 255, 255, 0.98);
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -50,7 +48,7 @@
             font-weight: 700;
             color: #333;
             margin-bottom: 0.5rem;
-            font-size: 1.75rem; /* เพิ่มขนาดหัวข้อ */
+            font-size: 1.75rem;
         }
         .card-subtitle {
             color: #6c757d;
@@ -59,14 +57,13 @@
         }
         .form-label {
             font-weight: 500;
-            color: #495057; /* ปรับสีให้เข้มขึ้น */
+            color: #495057;
         }
         .input-group-text {
             background-color: transparent;
             border-right: none;
-            /* ✨ เปลี่ยนสี Icon เป็นทางการมากขึ้น */
             color: #343a40;
-            font-size: 1.1rem; /* ปรับขนาดไอคอนเล็กน้อย */
+            font-size: 1.1rem;
         }
         .form-control {
             border-left: none;
@@ -75,30 +72,15 @@
             transition: all 0.3s ease;
             font-size: 1rem;
         }
-        .form-control:focus {
-            box-shadow: none;
-            border-color: #555; /* เปลี่ยนสีตอน focus */
-        }
-        /* Added style for read-only fields */
         .form-control:read-only {
             background-color: #e9ecef;
             cursor: not-allowed;
         }
-        .btn-primary {
-            background: linear-gradient(45deg, #B71C1C, #D32F2F); /* ปรับโทนสีแดงให้เข้มขึ้น */
-            border: none;
-            border-radius: 50px;
-            padding: 12px 30px;
-            font-weight: 700;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(183, 28, 28, 0.3);
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #555;
         }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(183, 28, 28, 0.4);
-        }
-         .btn-success {
+        .btn-success {
             background: linear-gradient(45deg, #1E8449, #28B463);
             border: none;
             border-radius: 50px;
@@ -108,9 +90,40 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(30, 132, 73, 0.3);
         }
-        .btn-success:hover {
+        .btn-success:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(30, 132, 73, 0.4);
+        }
+        .btn-success:disabled {
+            background: #a5d6a7;
+            cursor: not-allowed;
+        }
+        .consent-section {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: box-shadow 0.2s ease-in-out;
+        }
+        .consent-section:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .consent-title {
+            font-weight: 700;
+            color: #343a40;
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+        }
+        .custom-switch .custom-control-label {
+            color: #495057;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        .custom-control-input:checked~.custom-control-label::before {
+            border-color: #1E8449;
+            background-color: #28B463;
         }
         @media (max-width: 768px) {
             .register-image-side { display: none; }
@@ -125,18 +138,12 @@
     <div class="register-image-side"></div>
     <div class="register-form-side">
         <div class="text-center mb-4">
+            <img src="https://img5.pic.in.th/file/secure-sv1/-1920-x-300-px.png" alt="Company Logo" style="max-width: 250px; margin-bottom: 1.5rem;">
             <h3 class="card-title">ยืนยันตัวตนพนักงาน</h3>
-            <p class="card-subtitle">กรุณากรอกข้อมูลให้ถูกต้อง!</p>
+            <p class="card-subtitle">กรุณากรอกข้อมูลด้วยไลน์ตัวเอง!</p>
         </div>
 
         <form method="post" autocomplete="off" name="hello-sheet" id="registerForm">
-            <div class="mb-3">
-                <label for="fullName" class="form-label">Full Name</label>
-                <div class="input-group">
-                    <div class="input-group-prepend"><span class="input-group-text"><i class="fa-solid fa-user"></i></span></div>
-                    <input type="text" class="form-control" id="fullName" placeholder="ชื่อ-สกุล" name="ชื่อ-สกุล" required>
-                </div>
-            </div>
             <div class="mb-3">
                 <label for="IdEmployee" class="form-label">Employee ID</label>
                 <div class="input-group">
@@ -144,34 +151,28 @@
                     <input type="text" class="form-control" id="IdEmployee" placeholder="รหัสพนักงาน" name="รหัสพนักงาน" required>
                 </div>
             </div>
-            <div class="mb-3">
-                <label for="phone" class="form-label">Phone Number</label>
+             <div class="mb-3">
+                <label for="fullName" class="form-label">Full Name</label>
                 <div class="input-group">
-                    <div class="input-group-prepend"><span class="input-group-text"><i class="fa-solid fa-phone"></i></span></div>
-                    <input type="tel" class="form-control" id="phone" placeholder="เบอร์โทรศัพท์" name="เบอร์โทร" required>
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email Address</label>
-                <div class="input-group">
-                    <div class="input-group-prepend"><span class="input-group-text"><i class="fa-solid fa-envelope"></i></span></div>
-                    <input type="email" name="อีเมล" class="form-control" id="email" placeholder="Email" required>
-                </div>
-            </div>
-            
-            <div class="mb-3" id="otp-group" style="display: none;">
-                <label for="otp" class="form-label">รหัส OTP (ตรวจสอบในอีเมลของคุณ)</label>
-                <div class="input-group">
-                    <div class="input-group-prepend"><span class="input-group-text"><i class="fa-solid fa-key"></i></span></div>
-                    <input type="text" class="form-control" id="otp" name="otp" placeholder="กรอกรหัส 6 หลัก">
+                    <div class="input-group-prepend"><span class="input-group-text"><i class="fa-solid fa-user"></i></span></div>
+                    <input type="text" class="form-control" id="fullName" placeholder="ชื่อ-สกุล (จะแสดงอัตโนมัติเมื่อกรอกรหัสพนักงาน)" name="ชื่อ-สกุล" required readonly>
                 </div>
             </div>
             
             <input type="hidden" name="userID" id="userID">
+            
+            <div class="consent-section">
+                <h5 class="consent-title"><i class="fa-solid fa-shield-halved"></i> รับทราบข้อกำหนด</h5>
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="consentCheck" name="consent" value="รับทราบ" required>
+                    <label class="custom-control-label" for="consentCheck">
+                        การยืนยันตัวตนพนักงาน เพื่อรับข่าวสารต่างๆ และสิทธิประโยชน์อื่นๆที่พนักงานได้รับผ่านช่องทาง Line : HR-JMT
+                    </label>
+                </div>
+            </div>
 
             <div class="text-center mt-4">
-                <button type="button" class="btn btn-info fw-bold w-50" id="sendOtpBtn">ยืนยัน</button>
-                <button type="submit" class="btn btn-success fw-bold w-50" id="registerBtn" style="display: none;">บันทึกข้อมูล</button>
+                <button type="submit" class="btn btn-success fw-bold w-100" id="registerBtn" disabled>บันทึกข้อมูล</button>
             </div>
         </form>
     </div>
@@ -179,6 +180,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+    // --- LIFF Initialization ---
     async function main() {
         await liff.init({ liffId: "1654380017-Jj6lnbYq" }); // ◀️ **สำคัญ:** ใส่ LIFF ID ของคุณที่นี่
         if (!liff.isLoggedIn()) {
@@ -190,71 +192,94 @@
     }
     main();
 
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxmkNHeWLWkmaX505Rw370vBeZfAHmggiSBJ1JbKjbZ-gapXLuQH0S1c8goK9Wg9AE1/exec'; // ◀️ **สำคัญ:** ใช้ URL ที่ได้จากการ Deploy ของคุณ
+    // --- Form & Sheet Configuration ---
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzIyc8r0pzHr6PBK3h7hTGgju8y3GagkVJZ1CRzgJcirn-cP-hKU8_aoRjmuTHoyFGX/exec'; // ◀️ **สำคัญ:** ใช้ URL ที่ได้จากการ Deploy ของคุณ
     const form = document.forms['hello-sheet'];
-    const sendOtpBtn = document.getElementById('sendOtpBtn');
     const registerBtn = document.getElementById('registerBtn');
-    const otpGroup = document.getElementById('otp-group');
-    const emailInput = document.getElementById('email');
+    const consentCheckbox = document.getElementById('consentCheck');
+    const employeeIdInput = document.getElementById('IdEmployee');
+    const fullNameInput = document.getElementById('fullName');
+    
+    let isIdVerified = false; // [เพิ่ม] สร้างตัวแปรสถานะ
 
-    // --- 1. เหตุการณ์เมื่อกดปุ่ม "ยืนยัน(otp)" ---
-    sendOtpBtn.addEventListener('click', e => {
-        e.preventDefault();
-        
-        if (!form.checkValidity()) {
-            Swal.fire('ข้อมูลไม่ครบถ้วน', 'กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วนก่อน', 'warning');
+    // --- ฟังก์ชันสำหรับอัปเดตสถานะปุ่ม ---
+    function updateButtonState() {
+        registerBtn.disabled = !(consentCheckbox.checked && isIdVerified);
+    }
+
+    // --- Employee ID Verification ---
+    employeeIdInput.addEventListener('blur', function() {
+        const employeeId = this.value.trim();
+        // [แก้ไข] รีเซ็ตสถานะทุกครั้งที่ตรวจสอบ
+        isIdVerified = false; 
+        fullNameInput.value = '';
+        updateButtonState();
+
+        if (employeeId === '') {
             return;
         }
-        
+
+        const formData = new FormData();
+        formData.append('action', 'getEmployeeName');
+        formData.append('employeeId', employeeId);
+
         Swal.fire({
-            title: 'กำลังตรวจสอบข้อมูล...',
-            text: `ระบบกำลังตรวจสอบข้อมูลและเตรียมส่ง OTP...`,
+            title: 'กำลังตรวจสอบรหัสพนักงาน...',
             allowOutsideClick: false,
             didOpen: () => { Swal.showLoading(); }
         });
-        
-        const formData = new FormData(form);
-        formData.append('action', 'sendOTP');
 
         fetch(scriptURL, { method: 'POST', body: formData })
             .then(response => response.json())
             .then(data => {
+                Swal.close();
                 if (data.result === 'success') {
-                    Swal.fire('ส่ง OTP สำเร็จ!', 'กรุณาตรวจสอบรหัสในอีเมลของคุณ (รหัสมีอายุ 5 นาที)', 'success');
-                    sendOtpBtn.style.display = 'none';
-                    registerBtn.style.display = 'inline-block';
-                    otpGroup.style.display = 'block';
-
-                    // --- ⬇️ START: CODE MODIFICATION ⬇️ ---
-                    // ทำให้ input fields ทั้งหมดไม่สามารถแก้ไขได้
-                    document.getElementById('fullName').readOnly = true;
-                    document.getElementById('IdEmployee').readOnly = true;
-                    document.getElementById('phone').readOnly = true;
-                    emailInput.readOnly = true; 
-                    // --- ⬆️ END: CODE MODIFICATION ⬆️ ---
-
-                    document.getElementById('otp').required = true;
-
-                } else if (data.error === 'duplicate_user') {
-                    Swal.fire('ลงทะเบียนแล้ว', 'คุณได้ยืนยันตัวตนไว้ในระบบแล้ว หากต้องการแก้ไขข้อมูลกรุณาติดต่อฝ่ายบุคคล', 'warning');
-
-                } else if (data.error === 'invalid_employee_id') {
-                    Swal.fire('รหัสพนักงานไม่ถูกต้อง', 'ไม่พบรหัสพนักงานของคุณในระบบ กรุณาตรวจสอบอีกครั้ง', 'error');
-
+                    fullNameInput.value = data.name;
+                    isIdVerified = true; // [แก้ไข] ตั้งค่าสถานะเป็น true เมื่อสำเร็จ
+                } else if (data.error === 'duplicate_employee_id') {
+                    Swal.fire('ลงทะเบียนแล้ว', 'รหัสพนักงานนี้ได้ลงทะเบียนในระบบแล้ว', 'warning');
                 } else {
-                    throw new Error(data.error || 'ไม่สามารถส่ง OTP ได้');
+                    Swal.fire('ไม่พบข้อมูล', 'ไม่พบรหัสพนักงานนี้ในระบบ กรุณาตรวจสอบอีกครั้ง', 'error');
                 }
+                updateButtonState(); // [แก้ไข] อัปเดตสถานะปุ่มหลัง fetch
             })
             .catch(error => {
-                console.error('Error sending OTP!', error.message);
-                Swal.fire('เกิดข้อผิดพลาด!', 'ไม่สามารถส่ง OTP ได้ กรุณาตรวจสอบข้อมูลและลองใหม่อีกครั้ง', 'error');
+                Swal.fire('เกิดข้อผิดพลาด', 'ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้', 'error');
+                console.error('Error fetching employee name:', error);
+                isIdVerified = false; // [แก้ไข] รีเซ็ตสถานะหากเกิดข้อผิดพลาด
+                updateButtonState();
             });
     });
+    
+    // [เพิ่ม] รีเซ็ตสถานะเมื่อผู้ใช้กลับไปแก้ไขรหัส
+    employeeIdInput.addEventListener('input', function() {
+        if (isIdVerified) {
+            isIdVerified = false;
+            fullNameInput.value = '';
+            updateButtonState();
+        }
+    });
 
-    // --- 2. เหตุการณ์เมื่อกดปุ่ม "ลงทะเบียน" (Submit Form) ---
+    // --- Consent & Submit Button ---
+    consentCheckbox.addEventListener('change', function() {
+        updateButtonState(); // [แก้ไข] เรียกใช้ฟังก์ชันกลาง
+    });
+
+    // --- Form Submission ---
     form.addEventListener('submit', e => {
         e.preventDefault();
+        
+        // [แก้ไข] เพิ่มการตรวจสอบสถานะ isIdVerified ก่อนส่ง
+        if (!isIdVerified) {
+             Swal.fire('รหัสพนักงานไม่ถูกต้อง', 'กรุณากรอกรหัสพนักงานที่ถูกต้องและรอให้ระบบตรวจสอบชื่อ-สกุลให้เรียบร้อยก่อน', 'warning');
+             return;
+        }
 
+        if (!form.checkValidity()) {
+            Swal.fire('ข้อมูลไม่ครบถ้วน', 'กรุณากรอกข้อมูลและทำเครื่องหมายยินยอมให้ครบถ้วนก่อน', 'warning');
+            return;
+        }
+        
         Swal.fire({
             title: 'กำลังตรวจสอบและบันทึกข้อมูล...',
             text: 'กรุณารอสักครู่',
@@ -263,7 +288,7 @@
         });
         
         const formData = new FormData(form);
-        formData.append('action', 'register');
+        formData.append('action', 'register'); 
 
         fetch(scriptURL, { method: 'POST', body: formData })
             .then(response => response.json())
@@ -279,23 +304,21 @@
                             window.location.reload();
                         }
                     });
-                    
                 } else if (data.error === 'duplicate_user') {
-                    Swal.fire('ลงทะเบียนแล้ว', 'คุณได้ยืนยันตัวตนไว้ในระบบแล้ว หากต้องการแก้ไขให้ติดต่อที่ฝ่ายบุคคล', 'warning');
-
-                } else if (data.error === 'invalid_otp') {
-                    Swal.fire('OTP ไม่ถูกต้อง!', 'รหัส OTP ที่คุณกรอกไม่ถูกต้องหรือหมดอายุแล้ว กรุณาลองใหม่อีกครั้ง', 'error');
-                
+                    Swal.fire('ลงทะเบียนแล้ว', 'คุณได้ยืนยันตัวตนไว้ในระบบแล้ว หากต้องการแก้ไขข้อมูลกรุณาติดต่อฝ่ายบุคคล', 'warning');
+                } else if (data.error === 'duplicate_employee_id') {
+                    Swal.fire('ลงทะเบียนแล้ว', 'รหัสพนักงานนี้ได้ถูกลงทะเบียนแล้ว กรุณาติดต่อฝ่ายบุคคล', 'error');
                 } else if (data.error === 'invalid_employee_id') {
                     Swal.fire('รหัสพนักงานไม่ถูกต้อง', 'ไม่พบรหัสพนักงานของคุณในระบบ กรุณาตรวจสอบอีกครั้ง', 'error');
-
+                } else if (data.error === 'consent_required') {
+                    Swal.fire('ไม่ได้รับความยินยอม', 'เกิดข้อผิดพลาด: กรุณาทำเครื่องหมายยินยอมก่อนบันทึก', 'error');
                 } else {
                     throw new Error(data.error || 'Something went wrong');
                 }
             })
             .catch(error => {
                 console.error('Error!', error.message);
-                Swal.fire('เกิดข้อผิดพลาด!', 'ไม่สามารถบันทึกข้อมูลได้ กรุณาลองใหม่อีกครั้ง', 'error');
+                Swal.fire('เกิดข้อผิดพลาด!', `ไม่สามารถบันทึกข้อมูลได้: ${error.message}`, 'error');
             });
     });
 </script>
