@@ -179,14 +179,14 @@
                 <label for="IdEmployee" class="form-label" data-lang-key="labelEmployeeId"></label>
                 <div class="input-group">
                     <div class="input-group-prepend"><span class="input-group-text"><i class="fa-solid fa-id-card-clip"></i></span></div>
-                    <input type="text" class="form-control" id="IdEmployee" name="รหัสพนักงาน" required>
+                    <input type="text" class="form-control" id="IdEmployee" name="employee id" required>
                 </div>
             </div>
             <div class="mb-3">
                 <label for="fullName" class="form-label" data-lang-key="labelFullName"></label>
                 <div class="input-group">
                     <div class="input-group-prepend"><span class="input-group-text"><i class="fa-solid fa-user"></i></span></div>
-                    <input type="text" class="form-control" id="fullName" name="ชื่อ-สกุล" required readonly>
+                     <input type="text" class="form-control" id="fullName" name="name" required readonly>
                 </div>
             </div>
             
@@ -329,7 +329,7 @@
     main();
 
     // --- Form & Sheet Configuration ---
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwBpjQZJqYts_2Jefavya83vSkJeBhOsRDASNN58z1SNR2LHMmbmOY0VJc5PvMOn995/exec'; // ◀️ **สำคัญ:** ใช้ URL ที่ได้จากการ Deploy ของคุณ
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbycfvNb-YmdtMO1qhjyIuNxkWaeHxmQM68QfExbpid5gBmIGyaEeo45moE7HaBnzvdt/exec'; // ◀️ **สำคัญ:** ใช้ URL ที่ได้จากการ Deploy ของคุณ
     const form = document.forms['hello-sheet'];
     const registerBtn = document.getElementById('registerBtn');
     const consentCheckbox = document.getElementById('consentCheck');
@@ -468,5 +468,3 @@
 
 </body>
 </html>
-
-
