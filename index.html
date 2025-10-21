@@ -35,7 +35,7 @@
             flex-direction: row;
             max-width: 900px;
             width: 100%;
-            position: relative; /* Added for language switcher positioning */
+            position: relative;
         }
         .register-image-side {
             background: url('https://img2.pic.in.th/pic/verified75cf832c3d965c51.png') center/cover;
@@ -127,7 +127,6 @@
             border-color: #1E8449;
             background-color: #28B463;
         }
-        /* -- NEW: Language Switcher Styles -- */
         .lang-switcher {
             position: absolute;
             top: 1rem;
@@ -166,6 +165,9 @@
         <div class="lang-switcher">
             <a href="#" onclick="setLanguage('th'); return false;" class="lang-btn" id="lang-th">TH</a>
             <a href="#" onclick="setLanguage('en'); return false;" class="lang-btn" id="lang-en">EN</a>
+            <a href="#" onclick="setLanguage('mm'); return false;" class="lang-btn" id="lang-mm">MM</a>
+            <a href="#" onclick="setLanguage('vn'); return false;" class="lang-btn" id="lang-vn">VN</a>
+            <a href="#" onclick="setLanguage('cn'); return false;" class="lang-btn" id="lang-cn">CN</a>
         </div>
 
         <div class="text-center mb-4">
@@ -210,7 +212,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    // --- NEW: Language Translation Object ---
+    // --- MODIFIED: Added translations for MM, VN, CN ---
     const translations = {
         en: {
             pageTitle: "Employee Verification",
@@ -277,20 +279,116 @@
             saConsentRequired: "เกิดข้อผิดพลาด: กรุณาทำเครื่องหมายยินยอมก่อนบันทึก",
             saGenericErrorTitle: "เกิดข้อผิดพลาด!",
             saGenericErrorText: "ไม่สามารถบันทึกข้อมูลได้: "
+        },
+        mm: { // Burmese
+            pageTitle: "ဝန်ထမ်း အချက်အလက် စစ်ဆေးခြင်း",
+            formTitle: "ဝန်ထမ်း အချက်အလက် စစ်ဆေးခြင်း",
+            formSubtitle: "ကျေးဇူးပြု၍ သင်၏ကိုယ်ပိုင် LINE အကောင့်ဖြင့် မှတ်ပုံတင်ပါ။",
+            labelEmployeeId: "ဝန်ထမ်း ID",
+            placeholderEmployeeId: "ဝန်ထမ်း ID",
+            labelFullName: "အမည်အပြည့်အစုံ",
+            placeholderFullName: "အမည်အပြည့်အစုံ (ID ထည့်ပြီးနောက် အလိုအလျောက် ဖြည့်ပါမည်)",
+            consentTitle: " စည်းကမ်းချက်များကို လက်ခံပါ",
+            consentLabel: "ဤစစ်ဆေးမှုသည် Line: MCIC_HR_NEWS မှတစ်ဆင့် ကုမ္ပဏီသတင်းများနှင့် အခြားအကျိုးခံစားခွင့်များ ရရှိရန်အတွက် ဖြစ်ပါသည်။",
+            submitButton: "အချက်အလက် သိမ်းဆည်းရန်",
+            saVerifying: "ဝန်ထမ်း ID ကို စစ်ဆေးနေသည်...",
+            saRegisteredTitle: "မှတ်ပုံတင်ပြီးသားဖြစ်သည်",
+            saRegisteredText: "ဤဝန်ထမ်း ID ကို စနစ်တွင် မှတ်ပုံတင်ပြီးသား ဖြစ်ပါသည်။",
+            saNotFoundTitle: "ရှာမတွေ့ပါ",
+            saNotFoundText: "ဤဝန်ထမ်း ID ကို ရှာမတွေ့ပါ။ ကျေးဇူးပြု၍ စစ်ဆေးပြီး ထပ်မံကြိုးစားပါ။",
+            saErrorTitle: "အမှားအယွင်းတစ်ခု ဖြစ်ပွားခဲ့သည်",
+            saConnectionError: "ဆာဗာသို့ ချိတ်ဆက်၍မရပါ။",
+            saInvalidIdTitle: "ဝန်ထမ်း ID မမှန်ကန်ပါ",
+            saInvalidIdText: "ကျေးဇူးပြု၍ မှန်ကန်သော ဝန်ထမ်း ID ကို ထည့်သွင်းပြီး အမည်ကို စစ်ဆေးအတည်ပြုရန် စောင့်ပါ။",
+            saIncompleteDataTitle: "အချက်အလက် မပြည့်စုံပါ",
+            saIncompleteDataText: "ကျေးဇူးပြု၍ အချက်အလက်အားလုံးကို ဖြည့်စွက်ပြီး သိမ်းဆည်းခြင်းမပြုမီ သဘောတူညီချက် ပေးပါ။",
+            saSavingTitle: "အချက်အလက်များကို စစ်ဆေးပြီး သိမ်းဆည်းနေသည်...",
+            saSavingText: "ကျေးဇူးပြု၍ ခဏစောင့်ပါ။",
+            saSuccessTitle: "အချက်အလက် သိမ်းဆည်းခြင်း အောင်မြင်ပါသည်!",
+            saSuccessText: "သင်၏ အချက်အလက်များကို သိမ်းဆည်းပြီးပါပြီ။",
+            saDuplicateUser: "သင်သည် သင်၏ အထောက်အထားကို အတည်ပြုပြီးသား ဖြစ်ပါသည်။ ပြင်ဆင်လိုပါက HR သို့ ဆက်သွယ်ပါ။",
+            saDuplicateEmpId: "ဤဝန်ထမ်း ID ကို မှတ်ပုံတင်ပြီးသား ဖြစ်ပါသည်။ HR သို့ ဆက်သွယ်ပါ။",
+            saInvalidEmpId: "သင်၏ ဝန်ထမ်း ID ကို စနစ်တွင် ရှာမတွေ့ပါ။ ကျေးဇူးပြု၍ ထပ်မံစစ်ဆေးပါ။",
+            saConsentRequired: "အမှားအယွင်း: ကျေးဇူးပြု၍ သိမ်းဆည်းခြင်းမပြုမီ သဘောတူညီချက် အကွက်ကို အမှန်ခြစ်ပေးပါ။",
+            saGenericErrorTitle: "အမှားအယွင်းတစ်ခု ဖြစ်ပွားခဲ့သည်!",
+            saGenericErrorText: "အချက်အလက်များကို သိမ်းဆည်း၍မရပါ: "
+        },
+        vn: { // Vietnamese
+            pageTitle: "Xác minh nhân viên",
+            formTitle: "Xác minh nhân viên",
+            formSubtitle: "Vui lòng sử dụng tài khoản LINE của chính bạn để đăng ký!",
+            labelEmployeeId: "Mã nhân viên",
+            placeholderEmployeeId: "Mã nhân viên",
+            labelFullName: "Họ và Tên",
+            placeholderFullName: "Họ và Tên (sẽ tự động điền sau khi nhập ID)",
+            consentTitle: " Xác nhận điều khoản",
+            consentLabel: "Việc xác minh này là để nhận tin tức công ty và các lợi ích khác qua Line: MCIC_HR_NEWS.",
+            submitButton: "Lưu dữ liệu",
+            saVerifying: "Đang xác minh Mã nhân viên...",
+            saRegisteredTitle: "Đã đăng ký",
+            saRegisteredText: "Mã nhân viên này đã được đăng ký trong hệ thống.",
+            saNotFoundTitle: "Không tìm thấy",
+            saNotFoundText: "Không tìm thấy Mã nhân viên này. Vui lòng kiểm tra và thử lại.",
+            saErrorTitle: "Đã xảy ra lỗi",
+            saConnectionError: "Không thể kết nối đến máy chủ.",
+            saInvalidIdTitle: "Mã nhân viên không hợp lệ",
+            saInvalidIdText: "Vui lòng nhập Mã nhân viên hợp lệ và đợi xác minh tên.",
+            saIncompleteDataTitle: "Thông tin chưa đầy đủ",
+            saIncompleteDataText: "Vui lòng điền đầy đủ các trường và đồng ý trước khi lưu.",
+            saSavingTitle: "Đang xác minh và lưu dữ liệu...",
+            saSavingText: "Vui lòng đợi.",
+            saSuccessTitle: "Lưu dữ liệu thành công!",
+            saSuccessText: "Thông tin của bạn đã được lưu.",
+            saDuplicateUser: "Bạn đã xác minh danh tính. Để chỉnh sửa, vui lòng liên hệ phòng Nhân sự.",
+            saDuplicateEmpId: "Mã nhân viên này đã được đăng ký. Vui lòng liên hệ phòng Nhân sự.",
+            saInvalidEmpId: "Không tìm thấy Mã nhân viên của bạn trong hệ thống. Vui lòng kiểm tra lại.",
+            saConsentRequired: "Lỗi: Vui lòng đánh dấu vào ô đồng ý trước khi lưu.",
+            saGenericErrorTitle: "Đã xảy ra lỗi!",
+            saGenericErrorText: "Không thể lưu dữ liệu: "
+        },
+        cn: { // Chinese (Simplified)
+            pageTitle: "员工验证",
+            formTitle: "员工验证",
+            formSubtitle: "请使用您自己的LINE帐户进行注册！",
+            labelEmployeeId: "员工ID",
+            placeholderEmployeeId: "员工ID",
+            labelFullName: "全名",
+            placeholderFullName: "全名（输入ID后将自动填充）",
+            consentTitle: " 确认条款",
+            consentLabel: "此验证用于通过Line: MCIC_HR_NEWS 接收公司新闻和其他福利。",
+            submitButton: "保存数据",
+            saVerifying: "正在验证员工ID...",
+            saRegisteredTitle: "已注册",
+            saRegisteredText: "此员工ID已在系统中注册。",
+            saNotFoundTitle: "未找到",
+            saNotFoundText: "未找到此员工ID。请检查后重试。",
+            saErrorTitle: "发生错误",
+            saConnectionError: "无法连接到服务器。",
+            saInvalidIdTitle: "无效的员工ID",
+            saInvalidIdText: "请输入有效的员工ID并等待姓名验证。",
+            saIncompleteDataTitle: "信息不完整",
+            saIncompleteDataText: "保存前，请填写所有字段并表示同意。",
+            saSavingTitle: "正在验证和保存数据...",
+            saSavingText: "请稍候。",
+            saSuccessTitle: "数据保存成功！",
+            saSuccessText: "您的信息已保存。",
+            saDuplicateUser: "您已经验证了身份。如需编辑，请联系人力资源部。",
+            saDuplicateEmpId: "此员工ID已被注册。请联系人力资源部。",
+            saInvalidEmpId: "在系统中找不到您的员工ID。请再次检查。",
+            saConsentRequired: "错误：保存前请勾选同意框。",
+            saGenericErrorTitle: "发生错误！",
+            saGenericErrorText: "无法保存数据："
         }
     };
-    let currentLangTexts = {}; // To hold the text of the selected language
+    let currentLangTexts = {};
 
-    // --- NEW: Function to set the language ---
     function setLanguage(lang) {
         if (!translations[lang]) return;
         localStorage.setItem('userLanguage', lang);
         currentLangTexts = translations[lang];
 
-        // Set page title
         document.title = currentLangTexts.pageTitle;
 
-        // Set text for all elements with data-lang-key attribute
         document.querySelectorAll('[data-lang-key]').forEach(el => {
             const key = el.getAttribute('data-lang-key');
             if (currentLangTexts[key]) {
@@ -305,17 +403,17 @@
             }
         });
 
-        // Set placeholders
         document.getElementById('IdEmployee').placeholder = currentLangTexts.placeholderEmployeeId;
         document.getElementById('fullName').placeholder = currentLangTexts.placeholderFullName;
 
-        // Update active button style
+        // --- MODIFIED: Update active button style for all 5 languages ---
         document.getElementById('lang-th').classList.toggle('active', lang === 'th');
         document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+        document.getElementById('lang-mm').classList.toggle('active', lang === 'mm');
+        document.getElementById('lang-vn').classList.toggle('active', lang === 'vn');
+        document.getElementById('lang-cn').classList.toggle('active', lang === 'cn');
     }
 
-
-    // --- LIFF Initialization ---
     async function main() {
         await liff.init({ liffId: "2008254230-mXa6NopA" }); // ◀️ **สำคัญ:** ใส่ LIFF ID ของคุณที่นี่
         if (!liff.isLoggedIn()) {
@@ -328,7 +426,6 @@
     }
     main();
 
-    // --- Form & Sheet Configuration ---
     const scriptURL = 'https://script.google.com/macros/s/AKfycbycfvNb-YmdtMO1qhjyIuNxkWaeHxmQM68QfExbpid5gBmIGyaEeo45moE7HaBnzvdt/exec'; // ◀️ **สำคัญ:** ใช้ URL ที่ได้จากการ Deploy ของคุณ
     const form = document.forms['hello-sheet'];
     const registerBtn = document.getElementById('registerBtn');
@@ -338,12 +435,10 @@
     
     let isIdVerified = false;
 
-    // --- Function to update button state ---
     function updateButtonState() {
         registerBtn.disabled = !(consentCheckbox.checked && isIdVerified);
     }
 
-    // --- Employee ID Verification ---
     employeeIdInput.addEventListener('blur', function() {
         const employeeId = this.value.trim();
         isIdVerified = false; 
@@ -359,7 +454,7 @@
         formData.append('employeeId', employeeId);
 
         Swal.fire({
-            title: currentLangTexts.saVerifying, // <-- MODIFIED
+            title: currentLangTexts.saVerifying,
             allowOutsideClick: false,
             didOpen: () => { Swal.showLoading(); }
         });
@@ -372,21 +467,20 @@
                     fullNameInput.value = data.name;
                     isIdVerified = true;
                 } else if (data.error === 'duplicate_employee_id') {
-                    Swal.fire(currentLangTexts.saRegisteredTitle, currentLangTexts.saRegisteredText, 'warning'); // <-- MODIFIED
+                    Swal.fire(currentLangTexts.saRegisteredTitle, currentLangTexts.saRegisteredText, 'warning');
                 } else {
-                    Swal.fire(currentLangTexts.saNotFoundTitle, currentLangTexts.saNotFoundText, 'error'); // <-- MODIFIED
+                    Swal.fire(currentLangTexts.saNotFoundTitle, currentLangTexts.saNotFoundText, 'error');
                 }
                 updateButtonState();
             })
             .catch(error => {
-                Swal.fire(currentLangTexts.saErrorTitle, currentLangTexts.saConnectionError, 'error'); // <-- MODIFIED
+                Swal.fire(currentLangTexts.saErrorTitle, currentLangTexts.saConnectionError, 'error');
                 console.error('Error fetching employee name:', error);
                 isIdVerified = false;
                 updateButtonState();
             });
     });
     
-    // --- Reset status when user edits the ID ---
     employeeIdInput.addEventListener('input', function() {
         if (isIdVerified) {
             isIdVerified = false;
@@ -395,28 +489,26 @@
         }
     });
 
-    // --- Consent & Submit Button ---
     consentCheckbox.addEventListener('change', function() {
         updateButtonState();
     });
 
-    // --- Form Submission ---
     form.addEventListener('submit', e => {
         e.preventDefault();
         
         if (!isIdVerified) {
-            Swal.fire(currentLangTexts.saInvalidIdTitle, currentLangTexts.saInvalidIdText, 'warning'); // <-- MODIFIED
+            Swal.fire(currentLangTexts.saInvalidIdTitle, currentLangTexts.saInvalidIdText, 'warning');
             return;
         }
 
         if (!form.checkValidity()) {
-            Swal.fire(currentLangTexts.saIncompleteDataTitle, currentLangTexts.saIncompleteDataText, 'warning'); // <-- MODIFIED
+            Swal.fire(currentLangTexts.saIncompleteDataTitle, currentLangTexts.saIncompleteDataText, 'warning');
             return;
         }
         
         Swal.fire({
-            title: currentLangTexts.saSavingTitle, // <-- MODIFIED
-            text: currentLangTexts.saSavingText,   // <-- MODIFIED
+            title: currentLangTexts.saSavingTitle,
+            text: currentLangTexts.saSavingText,   
             allowOutsideClick: false,
             didOpen: () => { Swal.showLoading(); }
         });
@@ -430,8 +522,8 @@
                 if (data.result === 'success') {
                     Swal.fire({
                         position: 'center', icon: 'success', 
-                        title: currentLangTexts.saSuccessTitle, // <-- MODIFIED
-                        text: currentLangTexts.saSuccessText,   // <-- MODIFIED
+                        title: currentLangTexts.saSuccessTitle,
+                        text: currentLangTexts.saSuccessText,  
                         showConfirmButton: false, timer: 2500
                     }).then(() => {
                         if(liff.isInClient()) {
@@ -441,26 +533,25 @@
                         }
                     });
                 } else if (data.error === 'duplicate_user') {
-                    Swal.fire(currentLangTexts.saRegisteredTitle, currentLangTexts.saDuplicateUser, 'warning'); // <-- MODIFIED
+                    Swal.fire(currentLangTexts.saRegisteredTitle, currentLangTexts.saDuplicateUser, 'warning');
                 } else if (data.error === 'duplicate_employee_id') {
-                    Swal.fire(currentLangTexts.saRegisteredTitle, currentLangTexts.saDuplicateEmpId, 'error'); // <-- MODIFIED
+                    Swal.fire(currentLangTexts.saRegisteredTitle, currentLangTexts.saDuplicateEmpId, 'error');
                 } else if (data.error === 'invalid_employee_id') {
-                    Swal.fire(currentLangTexts.saInvalidIdTitle, currentLangTexts.saInvalidEmpId, 'error'); // <-- MODIFIED
+                    Swal.fire(currentLangTexts.saInvalidIdTitle, currentLangTexts.saInvalidEmpId, 'error');
                 } else if (data.error === 'consent_required') {
-                    Swal.fire(currentLangTexts.saErrorTitle, currentLangTexts.saConsentRequired, 'error'); // <-- MODIFIED
+                    Swal.fire(currentLangTexts.saErrorTitle, currentLangTexts.saConsentRequired, 'error');
                 } else {
                     throw new Error(data.error || 'Something went wrong');
                 }
             })
             .catch(error => {
                 console.error('Error!', error.message);
-                Swal.fire(currentLangTexts.saGenericErrorTitle, `${currentLangTexts.saGenericErrorText}${error.message}`, 'error'); // <-- MODIFIED
+                Swal.fire(currentLangTexts.saGenericErrorTitle, `${currentLangTexts.saGenericErrorText}${error.message}`, 'error');
             });
     });
 
-    // --- NEW: Initialize language on page load ---
     document.addEventListener('DOMContentLoaded', () => {
-        const savedLang = localStorage.getItem('userLanguage') || 'th'; // Default to Thai
+        const savedLang = localStorage.getItem('userLanguage') || 'th';
         setLanguage(savedLang);
     });
 
@@ -468,4 +559,3 @@
 
 </body>
 </html>
-
