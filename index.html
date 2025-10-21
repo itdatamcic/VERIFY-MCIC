@@ -127,33 +127,24 @@
             border-color: #1E8449;
             background-color: #28B463;
         }
+        /* --- MODIFIED: Styles for language dropdown --- */
         .lang-switcher {
             position: absolute;
             top: 1rem;
             right: 1.5rem;
-            background-color: #f1f1f1;
-            border-radius: 20px;
-            padding: 4px;
-            display: flex;
+            width: 120px; /* Adjust width as needed */
         }
-        .lang-btn {
-            padding: 6px 14px;
-            text-decoration: none;
-            color: #555;
-            font-weight: 700;
-            border-radius: 16px;
-            transition: all 0.3s ease;
-        }
-        .lang-btn.active {
-            background-color: #fff;
-            color: #1E8449;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        #languageSelector {
+            border-radius: 5px;
+            font-weight: 500;
+            border-left: 1px solid #ced4da;
+            padding-left: 0.75rem;
         }
         @media (max-width: 768px) {
             .register-image-side { display: none; }
             .register-form-side { width: 100%; padding: 2rem; }
             .register-card { flex-direction: column; }
-            .lang-switcher { top: 0.75rem; right: 1rem; }
+            .lang-switcher { top: 0.75rem; right: 1rem; width: 110px; }
         }
     </style>
 </head>
@@ -162,12 +153,15 @@
 <div class="register-card">
     <div class="register-image-side"></div>
     <div class="register-form-side">
+        
         <div class="lang-switcher">
-            <a href="#" onclick="setLanguage('th'); return false;" class="lang-btn" id="lang-th">TH</a>
-            <a href="#" onclick="setLanguage('en'); return false;" class="lang-btn" id="lang-en">EN</a>
-            <a href="#" onclick="setLanguage('mm'); return false;" class="lang-btn" id="lang-mm">MM</a>
-            <a href="#" onclick="setLanguage('vn'); return false;" class="lang-btn" id="lang-vn">VN</a>
-            <a href="#" onclick="setLanguage('cn'); return false;" class="lang-btn" id="lang-cn">CN</a>
+            <select id="languageSelector" onchange="setLanguage(this.value)" class="form-control">
+                <option value="th" selected>ไทย</option>
+                <option value="en">English</option>
+                <option value="mm">မြန်မာ</option>
+                <option value="vn">Tiếng Việt</option>
+                <option value="cn">中文</option>
+            </select>
         </div>
 
         <div class="text-center mb-4">
@@ -212,7 +206,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    // --- MODIFIED: Added translations for MM, VN, CN ---
     const translations = {
         en: {
             pageTitle: "Employee Verification",
@@ -405,13 +398,6 @@
 
         document.getElementById('IdEmployee').placeholder = currentLangTexts.placeholderEmployeeId;
         document.getElementById('fullName').placeholder = currentLangTexts.placeholderFullName;
-
-        // --- MODIFIED: Update active button style for all 5 languages ---
-        document.getElementById('lang-th').classList.toggle('active', lang === 'th');
-        document.getElementById('lang-en').classList.toggle('active', lang === 'en');
-        document.getElementById('lang-mm').classList.toggle('active', lang === 'mm');
-        document.getElementById('lang-vn').classList.toggle('active', lang === 'vn');
-        document.getElementById('lang-cn').classList.toggle('active', lang === 'cn');
     }
 
     async function main() {
@@ -550,9 +536,11 @@
             });
     });
 
+    // --- MODIFIED: Update logic to work with the select dropdown on page load ---
     document.addEventListener('DOMContentLoaded', () => {
-        const savedLang = localStorage.getItem('userLanguage') || 'th';
-        setLanguage(savedLang);
+        const savedLang = localStorage.getItem('userLanguage') || 'th'; // Default to Thai
+        document.getElementById('languageSelector').value = savedLang; // Set dropdown value
+        setLanguage(savedLang); // Apply translations
     });
 
 </script>
