@@ -103,7 +103,7 @@
             background-color: #f8f9fa;
             border: 1px solid #e9ecef;
             border-radius: 12px;
-    S        padding: 1.25rem;
+            padding: 1.25rem;
             margin-top: 1.5rem;
             margin-bottom: 1.5rem;
             transition: box-shadow 0.2s ease-in-out;
@@ -198,7 +198,7 @@
             </div>
 
             <div class="text-center mt-4">
-                <button type="submit" class="btn btn-success fw-bold w-100" id="registerBtn" data-lang-key="submitButton" disabled></button>
+G              <button type="submit" class="btn btn-success fw-bold w-100" id="registerBtn" data-lang-key="submitButton" disabled></button>
             </div>
         </form>
     </div>
@@ -206,28 +206,27 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    // ▼▼▼======= START: MODIFIED TRANSLATIONS =======▼▼▼
     const translations = {
         en: {
             pageTitle: "Employee Verification",
             formTitle: "Employee Verification",
             formSubtitle: "Please use your own LINE account to register!",
-            labelEmployeeId: "Citizen ID / Passport No.", // <--- MODIFIED
-            placeholderEmployeeId: "Enter your Citizen ID / Passport No.", // <--- MODIFIED
+            labelEmployeeId: "Citizen ID / Passport No.",
+            placeholderEmployeeId: "Enter your Citizen ID / Passport No.",
             labelFullName: "Full Name",
             placeholderFullName: "Full Name (will auto-fill after entering ID)",
             consentTitle: " Acknowledge Terms",
             consentLabel: "This verification is for receiving company news and other benefits via Line: MCIC_HR_NEWS.",
             submitButton: "Save Data",
-            saVerifying: "Verifying ID...", // <--- MODIFIED
+            saVerifying: "Verifying ID...",
             saRegisteredTitle: "Already Registered",
-            saRegisteredText: "This ID No. is already registered in the system.", // <--- MODIFIED
+            saRegisteredText: "This ID No. is already registered in the system.",
             saNotFoundTitle: "Not Found",
-            saNotFoundText: "This ID No. was not found. Please check and try again.", // <--- MODIFIED
+            saNotFoundText: "This ID No. was not found. Please check and try again.",
             saErrorTitle: "An Error Occurred",
             saConnectionError: "Could not connect to the server.",
-            saInvalidIdTitle: "Invalid ID No.", // <--- MODIFIED
-            saInvalidIdText: "Please enter a valid ID No. and wait for name verification.", // <--- MODIFIED
+            saInvalidIdTitle: "Invalid ID No.",
+            saInvalidIdText: "Please enter a valid ID No. and wait for name verification.",
             saIncompleteDataTitle: "Incomplete Information",
             saIncompleteDataText: "Please fill in all fields and give consent before saving.",
             saSavingTitle: "Verifying and saving data...",
@@ -235,9 +234,9 @@
             saSuccessTitle: "Data Saved Successfully!",
             saSuccessText: "Your information has been saved.",
             saDuplicateUser: "You have already verified your identity. To edit, please contact HR.",
-            saDuplicateEmpId: "This ID No. has been registered. Please contact HR.", // <--- MODIFIED
-            saInvalidEmpId: "Your ID No. was not found in the system. Please check again.", // <--- MODIFIED
-            saConsentRequired: "Error: Please check the consent box before saving.",
+            saDuplicateEmpId: "This ID No. has been registered. Please contact HR.",
+            saInvalidEmpId: "Your ID No. was not found in the system. Please check again.",
+CH            saConsentRequired: "Error: Please check the consent box before saving.",
             saGenericErrorTitle: "An Error Occurred!",
             saGenericErrorText: "Could not save data: "
         },
@@ -245,22 +244,22 @@
             pageTitle: "ยืนยันตัวตนพนักงาน",
             formTitle: "ยืนยันตัวตนพนักงาน",
             formSubtitle: "กรุณากรอกข้อมูลด้วยไลน์ตัวเอง!",
-            labelEmployeeId: "เลขบัตรประชาชน / เลขพาสปอร์ต", // <--- MODIFIED
-            placeholderEmployeeId: "กรอกเลขบัตรประชาชน / เลขพาสปอร์ต", // <--- MODIFIED
+            labelEmployeeId: "เลขบัตรประชาชน / เลขพาสปอร์ต",
+            placeholderEmployeeId: "กรอกเลขบัตรประชาชน / เลขพาสปอร์ต",
             labelFullName: "Full Name",
             placeholderFullName: "ชื่อ-สกุล (จะแสดงอัตโนมัติเมื่อกรอกข้อมูล)",
             consentTitle: " รับทราบข้อกำหนด",
             consentLabel: "การยืนยันตัวตนพนักงาน เพื่อรับข่าวสารต่างๆ และสิทธิประโยชน์อื่นๆที่พนักงานได้รับผ่านช่องทาง Line : MCIC_HR_NEWS",
             submitButton: "บันทึกข้อมูล",
-            saVerifying: "กำลังตรวจสอบข้อมูล...", // <--- MODIFIED
+            saVerifying: "กำลังตรวจสอบข้อมูล...",
             saRegisteredTitle: "ลงทะเบียนแล้ว",
-            saRegisteredText: "เลขบัตร/พาสปอร์ตนี้ได้ลงทะเบียนในระบบแล้ว", // <--- MODIFIED
+            saRegisteredText: "เลขบัตร/พาสปอร์ตนี้ได้ลงทะเบียนในระบบแล้ว",
             saNotFoundTitle: "ไม่พบข้อมูล",
-            saNotFoundText: "ไม่พบข้อมูลเลขบัตร/พาสปอร์ตนี้ในระบบ กรุณาตรวจสอบอีกครั้ง", // <--- MODIFIED
+            saNotFoundText: "ไม่พบข้อมูลเลขบัตร/พาสปอร์ตนี้ในระบบ กรุณาตรวจสอบอีกครั้ง",
             saErrorTitle: "เกิดข้อผิดพลาด",
             saConnectionError: "ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้",
-            saInvalidIdTitle: "เลขบัตร/พาสปอร์ตไม่ถูกต้อง", // <--- MODIFIED
-            saInvalidIdText: "กรุณากรอกเลขบัตร/พาสปอร์ตที่ถูกต้องและรอให้ระบบตรวจสอบชื่อ-สกุลให้เรียบร้อยก่อน", // <--- MODIFIED
+            saInvalidIdTitle: "เลขบัตร/พาสปอร์ตไม่ถูกต้อง",
+            saInvalidIdText: "กรุณากรอกเลขบัตร/พาสปอร์ตที่ถูกต้องและรอให้ระบบตรวจสอบชื่อ-สกุลให้เรียบ ร้อยก่อน",
             saIncompleteDataTitle: "ข้อมูลไม่ครบถ้วน",
             saIncompleteDataText: "กรุณากรอกข้อมูลและทำเครื่องหมายยินยอมให้ครบถ้วนก่อน",
             saSavingTitle: "กำลังตรวจสอบและบันทึกข้อมูล...",
@@ -268,8 +267,8 @@
             saSuccessTitle: "บันทึกข้อมูลสำเร็จ!",
             saSuccessText: "ข้อมูลของคุณถูกบันทึกในระบบเรียบร้อยแล้ว",
             saDuplicateUser: "คุณได้ยืนยันตัวตนไว้ในระบบแล้ว หากต้องการแก้ไขข้อมูลกรุณาติดต่อฝ่ายบุคคล",
-            saDuplicateEmpId: "เลขบัตร/พาสปอร์ตนี้ได้ถูกลงทะเบียนแล้ว กรุณาติดต่อฝ่ายบุคคล", // <--- MODIFIED
-            saInvalidEmpId: "ไม่พบข้อมูลเลขบัตร/พาสปอร์ตของคุณในระบบ กรุณาตรวจสอบอีกครั้ง", // <--- MODIFIED
+            saDuplicateEmpId: "เลขบัตร/พาสปอร์ตนี้ได้ถูกลงทะเบียนแล้ว กรุณาติดต่อฝ่ายบุคคล",
+            saInvalidEmpId: "ไม่พบข้อมูลเลขบัตร/พาสปอร์ตของคุณในระบบ กรุณาตรวจสอบอีกครั้ง",
             saConsentRequired: "เกิดข้อผิดพลาด: กรุณาทำเครื่องหมายยินยอมก่อนบันทึก",
             saGenericErrorTitle: "เกิดข้อผิดพลาด!",
             saGenericErrorText: "ไม่สามารถบันทึกข้อมูลได้: "
@@ -278,31 +277,31 @@
             pageTitle: "ဝန်ထမ်း အချက်အလက် စစ်ဆေးခြင်း",
             formTitle: "ဝန်ထမ်း အချက်အလက် စစ်ဆေးခြင်း",
             formSubtitle: "ကျေးဇူးပြု၍ သင်၏ကိုယ်ပိုင် LINE အကောင့်ဖြင့် မှတ်ပုံတင်ပါ။",
-            labelEmployeeId: "နိုင်ငံသား ID / ပတ်စပို့ နံပါတ်", // <--- MODIFIED
-            placeholderEmployeeId: "သင်၏ နိုင်ငံသား ID / ပတ်စပို့ နံပါတ် ထည့်ပါ", // <--- MODIFIED
+            labelEmployeeId: "နိုင်ငံသား ID / ပတ်စပို့ နံပါတ်",
+            placeholderEmployeeId: "သင်၏ နိုင်ငံသား ID / ပတ်စပို့ နံပါတ် ထည့်ပါ",
             labelFullName: "အမည်အပြည့်အစုံ",
             placeholderFullName: "အမည်အပြည့်အစုံ (ID ထည့်ပြီးနောက် အလိုအလျောက် ဖြည့်ပါမည်)",
-A            consentTitle: " စည်းကမ်းချက်များကို လက်ခံပါ",
+            consentTitle: " စည်းကမ်းချက်များကို လက်ခံပါ",
             consentLabel: "ဤစစ်ဆေးမှုသည် Line: MCIC_HR_NEWS မှတစ်ဆင့် ကုမ္ပဏီသတင်းများနှင့် အခြားအကျိုးခံစားခွင့်များ ရရှိရန်အတွက် ဖြစ်ပါသည်။",
             submitButton: "အချက်အလက် သိမ်းဆည်းရန်",
-            saVerifying: "ID ကို စစ်ဆေးနေသည်...", // <--- MODIFIED
+            saVerifying: "ID ကို စစ်ဆေးနေသည်...",
             saRegisteredTitle: "မှတ်ပုံတင်ပြီးသားဖြစ်သည်",
-            saRegisteredText: "ဤ ID နံပါတ်ကို စနစ်တွင် မှတ်ပုံတင်ပြီးသား ဖြစ်ပါသည်။", // <--- MODIFIED
+            saRegisteredText: "ဤ ID နံပါတ်ကို စနစ်တွင် မှတ်ပုံတင်ပြီးသား ဖြစ်ပါသည်။",
             saNotFoundTitle: "ရှာမတွေ့ပါ",
-            saNotFoundText: "ဤ ID နံပါတ်ကို ရှာမတွေ့ပါ။ ကျေးဇူးပြု၍ စစ်ဆေးပြီး ထပ်မံကြိုးစားပါ။", // <--- MODIFIED
+            saNotFoundText: "ဤ ID နံပါတ်ကို ရှာမတွေ့ပါ။ ကျေးဇူးပြု၍ စစ်ဆေးပြီး ထပ်မံကြိုးစားပါ။",
             saErrorTitle: "အမှားအယွင်းတစ်ခု ဖြစ်ပွားခဲ့သည်",
             saConnectionError: "ဆာဗာသို့ ချိတ်ဆက်၍မရပါ။",
-            saInvalidIdTitle: "ID နံပါတ် မမှန်ကန်ပါ", // <--- MODIFIED
-            saInvalidIdText: "ကျေးဇူးပြု၍ မှန်ကန်သော ID နံပါတ်ကို ထည့်သွင်းပြီး အမည်ကို စစ်ဆေးအတည်ပြုရန် စောင့်ပါ။", // <--- MODIFIED
+            saInvalidIdTitle: "ID နံပါတ် မမှန်ကန်ပါ",
+            saInvalidIdText: "ကျေးဇူးပြု၍ မှန်ကန်သော ID နံပါတ်ကို ထည့်သွင်းပြီး အမည်ကို စစ်ဆေးအတည်ပြုရန် စောင့်ပါ။",
             saIncompleteDataTitle: "အချက်အလက် မပြည့်စုံပါ",
             saIncompleteDataText: "ကျေးဇူးပြု၍ အချက်အလက်အားလုံးကို ဖြည့်စွက်ပြီး သိမ်းဆည်းခြင်းမပြုမီ သဘောတူညီချက် ပေးပါ။",
             saSavingTitle: "အချက်အလက်များကို စစ်ဆေးပြီး သိမ်းဆည်းနေသည်...",
             saSavingText: "ကျေးဇူးပြု၍ ခဏစောင့်ပါ။",
-            saSuccessTitle: "အချက်အလက် သိမ်းဆည်းခြင်း အောင်မြင်ပါသည်!",
+  S           saSuccessTitle: "အချက်အလက် သိမ်းဆည်းခြင်း အောင်မြင်ပါသည်!",
             saSuccessText: "သင်၏ အချက်အလက်များကို သိမ်းဆည်းပြီးပါပြီ။",
             saDuplicateUser: "သင်သည် သင်၏ အထောက်အထားကို အတည်ပြုပြီးသား ဖြစ်ပါသည်။ ပြင်ဆင်လိုပါက HR သို့ ဆက်သွယ်ပါ။",
-            saDuplicateEmpId: "ဤ ID နံပါတ်ကို မှတ်ပုံတင်ပြီးသား ဖြစ်ပါသည်။ HR သို့ ဆက်သွယ်ပါ။", // <--- MODIFIED
-            saInvalidEmpId: "သင်၏ ID နံပါတ်ကို စနစ်တွင် ရှာမတွေ့ပါ။ ကျေးဇူးပြု၍ ထပ်မံစစ်ဆေးပါ။", // <--- MODIFIED
+            saDuplicateEmpId: "ဤ ID နံပါတ်ကို မှတ်ပုံတင်ပြီးသား ဖြစ်ပါသည်။ HR သို့ ဆက်သွယ်ပါ။",
+            saInvalidEmpId: "သင်၏ ID နံပါတ်ကို စနစ်တွင် ရှာမတွေ့ပါ။ ကျေးဇူးပြု၍ ထပ်မံစစ်ဆေးပါ။",
             saConsentRequired: "အမှားအယွင်း: ကျေးဇူးပြု၍ သိမ်းဆည်းခြင်းမပြုမီ သဘောတူညီချက် အကွက်ကို အမှန်ခြစ်ပေးပါ။",
             saGenericErrorTitle: "အမှားအယွင်းတစ်ခု ဖြစ်ပွားခဲ့သည်!",
             saGenericErrorText: "အချက်အလက်များကို သိမ်းဆည်း၍မရပါ: "
@@ -311,75 +310,74 @@ A            consentTitle: " စည်းကမ်းချက်မျာ
             pageTitle: "Xác minh nhân viên",
             formTitle: "Xác minh nhân viên",
             formSubtitle: "Vui lòng sử dụng tài khoản LINE của chính bạn để đăng ký!",
-            labelEmployeeId: "Số CCCD / Hộ chiếu", // <--- MODIFIED
-            placeholderEmployeeId: "Nhập Số CCCD / Hộ chiếu của bạn", // <--- MODIFIED
+            labelEmployeeId: "Số CCCD / Hộ chiếu",
+            placeholderEmployeeId: "Nhập Số CCCD / Hộ chiếu của bạn",
             labelFullName: "Họ và Tên",
             placeholderFullName: "Họ và Tên (sẽ tự động điền sau khi nhập ID)",
             consentTitle: " Xác nhận điều khoản",
             consentLabel: "Việc xác minh này là để nhận tin tức công ty và các lợi ích khác qua Line: MCIC_HR_NEWS.",
-            submitButton: "Lưu dữ liệu",
-            saVerifying: "Đang xác minh ID...", // <--- MODIFIED
+css            submitButton: "Lưu dữ liệu",
+            saVerifying: "Đang xác minh ID...",
             saRegisteredTitle: "Đã đăng ký",
-            saRegisteredText: "Số ID này đã được đăng ký trong hệ thống.", // <--- MODIFIED
+            saRegisteredText: "Số ID này đã được đăng ký trong hệ thống.",
             saNotFoundTitle: "Không tìm thấy",
-            saNotFoundText: "Không tìm thấy Số ID này. Vui lòng kiểm tra và thử lại.", // <--- MODIFIED
+  ":          saNotFoundText: "Không tìm thấy Số ID này. Vui lòng kiểm tra và thử lại.",
             saErrorTitle: "Đã xảy ra lỗi",
             saConnectionError: "Không thể kết nối đến máy chủ.",
-            saInvalidIdTitle: "Số ID không hợp lệ", // <--- MODIFIED
-S            saInvalidIdText: "Vui lòng nhập Số ID hợp lệ và đợi xác minh tên.", // <--- MODIFIED
+            saInvalidIdTitle: "Số ID không hợp lệ",
+            saInvalidIdText: "Vui lòng nhập Số ID hợp lệ và đợi xác minh tên.",
             saIncompleteDataTitle: "Thông tin chưa đầy đủ",
             saIncompleteDataText: "Vui lòng điền đầy đủ các trường và đồng ý trước khi lưu.",
             saSavingTitle: "Đang xác minh và lưu dữ liệu...",
             saSavingText: "Vui lòng đợi.",
             saSuccessTitle: "Lưu dữ liệu thành công!",
             saSuccessText: "Thông tin của bạn đã được lưu.",
-            saDuplicateUser: "Bạn đã xác minh danh tính. Để chỉnh sửa, vui lòng liên hệ phòng Nhân sự.",
-Z            saDuplicateEmpId: "Số ID này đã được đăng ký. Vui lòng liên hệ phòng Nhân sự.", // <--- MODIFIED
-            saInvalidEmpId: "Không tìm thấy Số ID của bạn trong hệ thống. Vui lòng kiểm tra lại.", // <--- MODIFIED
+  G           saDuplicateUser: "Bạn đã xác minh danh tính. Để chỉnh sửa, vui lòng liên hệ phòng Nhân sự.",
+            saDuplicateEmpId: "Số ID này đã được đăng ký. Vui lòng liên hệ phòng Nhân sự.",
+            saInvalidEmpId: "Không tìm thấy Số ID của bạn trong hệ thống. Vui lòng kiểm tra lại.",
             saConsentRequired: "Lỗi: Vui lòng đánh dấu vào ô đồng ý trước khi lưu.",
             saGenericErrorTitle: "Đã xảy ra lỗi!",
-            saGenericErrorText: "Không thể lưu dữ liệu: "
-a        },
+  g           saGenericErrorText: "Không thể lưu dữ liệu: "
+        },
         cn: { // Chinese (Simplified)
             pageTitle: "员工验证",
             formTitle: "员工验证",
             formSubtitle: "请使用您自己的LINE帐户进行注册！",
-            labelEmployeeId: "身份证号 / 护照号", // <--- MODIFIED
-            placeholderEmployeeId: "请输入您的身份证号 / 护照号", // <--- MODIFIED
+            labelEmployeeId: "身份证号 / 护照号",
+            placeholderEmployeeId: "请输入您的身份证号 / 护照号",
             labelFullName: "全名",
             placeholderFullName: "全名（输入ID后将自动填充）",
             consentTitle: " 确认条款",
             consentLabel: "此验证用于通过Line: MCIC_HR_NEWS 接收公司新闻和其他福利。",
-S            submitButton: "保存数据",
-            saVerifying: "正在验证ID...", // <--- MODIFIED
+            submitButton: "保存数据",
+            saVerifying: "正在验证ID...",
             saRegisteredTitle: "已注册",
-            saRegisteredText: "此ID号已在系统中注册。", // <--- MODIFIED
+CSS            saRegisteredText: "此ID号已在系统中注册。",
             saNotFoundTitle: "未找到",
-            saNotFoundText: "未找到此ID号。请检查后重试。", // <--- MODIFIED
+            saNotFoundText: "未找到此ID号。请检查后重试。",
             saErrorTitle: "发生错误",
             saConnectionError: "无法连接到服务器。",
-            saInvalidIdTitle: "无效的ID号", // <--- MODIFIED
-            saInvalidIdText: "请输入有效的ID号并等待姓名验证。", // <--- MODIFIED
+            saInvalidIdTitle: "无效的ID号",
+Such            saInvalidIdText: "请输入有效的ID号并等待姓名验证。",
             saIncompleteDataTitle: "信息不完整",
             saIncompleteDataText: "保存前，请填写所有字段并表示同意。",
             saSavingTitle: "正在验证和保存数据...",
             saSavingText: "请稍候。",
             saSuccessTitle: "数据保存成功！",
-            saSuccessText: "您的信息已保存。",
+Example:            saSuccessText: "您的信息已保存。",
             saDuplicateUser: "您已经验证了身份。如需编辑，请联系人力资源部。",
-CSS            saDuplicateEmpId: "此ID号已被注册。请联系人力资源部。", // <--- MODIFIED
-            saInvalidEmpId: "在系统中找不到您的ID号。请再次检查。", // <--- MODIFIED
+            saDuplicateEmpId: "此ID号已被注册。请联系人力资源部。",
+            saInvalidEmpId: "在系统中找不到您的ID号。请再次检查。",
             saConsentRequired: "错误：保存前请勾选同意框。",
             saGenericErrorTitle: "发生错误！",
-content            saGenericErrorText: "无法保存数据："
+            saGenericErrorText: "无法保存数据："
         }
     };
-    // ▲▲▲======= END: MODIFIED TRANSLATIONS =======▲▲▲
 
     let currentLangTexts = {};
 
     function setLanguage(lang) {
-        if (!translations[lang]) return;
+G        if (!translations[lang]) return;
         localStorage.setItem('userLanguage', lang);
         currentLangTexts = translations[lang];
 
@@ -392,7 +390,7 @@ content            saGenericErrorText: "无法保存数据："
                     el.textContent = currentLangTexts[key];
                 } else if(el.dataset.langKey === 'consentTitle'){
                     el.innerHTML = `<i class="fa-solid fa-shield-halved"></i>${currentLangTexts[key]}`;
-                } 
+section                } 
                 else {
                     el.textContent = currentLangTexts[key];
                 }
@@ -400,12 +398,12 @@ content            saGenericErrorText: "无法保存数据："
         });
 
         document.getElementById('IdEmployee').placeholder = currentLangTexts.placeholderEmployeeId;
-        document.getElementById('fullName').placeholder = currentLangTexts.placeholderFullName;
+s        document.getElementById('fullName').placeholder = currentLangTexts.placeholderFullName;
     }
 
     async function main() {
         await liff.init({ liffId: "2008254230-mXa6NopA" }); // ◀️ **สำคัญ:** ใส่ LIFF ID ของคุณที่นี่
-        if (!liff.isLoggedIn()) {
+Services        if (!liff.isLoggedIn()) {
             liff.login();
         } else {
             const profile = await liff.getProfile();
@@ -449,14 +447,14 @@ content            saGenericErrorText: "无法保存数据："
         });
 
         fetch(scriptURL, { method: 'POST', body: formData })
-            .then(response => response.json())
+  Z           .then(response => response.json())
             .then(data => {
                 Swal.close();
                 if (data.result === 'success') {
                     fullNameInput.value = data.name;
-isIdVerified = true;
+                    isIdVerified = true;
                 } else if (data.error === 'duplicate_employee_id') {
-                    Swal.fire(currentLangTexts.saRegisteredTitle, currentLangTexts.saRegisteredText, 'warning');
+a                    Swal.fire(currentLangTexts.saRegisteredTitle, currentLangTexts.saRegisteredText, 'warning');
                 } else {
                     Swal.fire(currentLangTexts.saNotFoundTitle, currentLangTexts.saNotFoundText, 'error');
                 }
@@ -464,17 +462,17 @@ isIdVerified = true;
             })
             .catch(error => {
                 Swal.fire(currentLangTexts.saErrorTitle, currentLangTexts.saConnectionError, 'error');
-                console.error('Error fetching employee name:', error);
+CSS                console.error('Error fetching employee name:', error);
                 isIdVerified = false;
                 updateButtonState();
             });
     });
     
     employeeIdInput.addEventListener('input', function() {
-line-height:          if (isIdVerified) {
+            if (isIdVerified) {
             isIdVerified = false;
             fullNameInput.value = '';
-            updateButtonState();
+section            updateButtonState();
         }
     });
 
@@ -482,9 +480,9 @@ line-height:          if (isIdVerified) {
         updateButtonState();
     });
 
-style    form.addEventListener('submit', e => {
+    form.addEventListener('submit', e => {
         e.preventDefault();
-        
+    A    
         if (!isIdVerified) {
             Swal.fire(currentLangTexts.saInvalidIdTitle, currentLangTexts.saInvalidIdText, 'warning');
             return;
@@ -492,7 +490,7 @@ style    form.addEventListener('submit', e => {
 
         if (!form.checkValidity()) {
             Swal.fire(currentLangTexts.saIncompleteDataTitle, currentLangTexts.saIncompleteDataText, 'warning');
-Services            return;
+A            return;
         }
         
         Swal.fire({
@@ -500,7 +498,7 @@ Services            return;
             text: currentLangTexts.saSavingText,   
             allowOutsideClick: false,
             didOpen: () => { Swal.showLoading(); }
-Two-Step         });
+section        });
         
         const formData = new FormData(form);
         formData.append('action', 'register'); 
@@ -509,27 +507,27 @@ Two-Step         });
             .then(response => response.json())
             .then(data => {
                 if (data.result === 'success') {
-CSS                    Swal.fire({
+G                    Swal.fire({
                         position: 'center', icon: 'success', 
                         title: currentLangTexts.saSuccessTitle,
-                        text: currentLangTexts.saSuccessText,  
+                        text: currentLangTexts.saSuccessText,s  
                         showConfirmButton: false, timer: 2500
                     }).then(() => {
                         if(liff.isInClient()) {
-Services                            liff.closeWindow();
+                            liff.closeWindow();
                         } else {
                             window.location.reload();
-                        }
+Examples:                        }
                     });
-                } else if (data.error === 'duplicate_user') {
-C                    Swal.fire(currentLangTexts.saRegisteredTitle, currentLangTexts.saDuplicateUser, 'warning');
+      We           } else if (data.error === 'duplicate_user') {
+                    Swal.fire(currentLangTexts.saRegisteredTitle, currentLangTexts.saDuplicateUser, 'warning');
                 } else if (data.error === 'duplicate_employee_id') {
                     Swal.fire(currentLangTexts.saRegisteredTitle, currentLangTexts.saDuplicateEmpId, 'error');
                 } else if (data.error === 'invalid_employee_id') {
                     Swal.fire(currentLangTexts.saInvalidIdTitle, currentLangTexts.saInvalidEmpId, 'error');
                 } else if (data.error === 'consent_required') {
                     Swal.fire(currentLangTexts.saErrorTitle, currentLangTexts.saConsentRequired, 'error');
-al                } else {
+s                } else {
                     throw new Error(data.error || 'Something went wrong');
                 }
             })
