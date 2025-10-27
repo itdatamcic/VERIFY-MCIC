@@ -198,7 +198,7 @@
             </div>
 
             <div class="text-center mt-4">
-G              <button type="submit" class="btn btn-success fw-bold w-100" id="registerBtn" data-lang-key="submitButton" disabled></button>
+                <button type="submit" class="btn btn-success fw-bold w-100" id="registerBtn" data-lang-key="submitButton" disabled></button>
             </div>
         </form>
     </div>
@@ -206,6 +206,7 @@ G              <button type="submit" class="btn btn-success fw-bold w-100
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+    // ▼▼▼======= START: MODIFIED TRANSLATIONS (CLEANED) =======▼▼▼
     const translations = {
         en: {
             pageTitle: "Employee Verification",
@@ -236,7 +237,7 @@ G              <button type="submit" class="btn btn-success fw-bold w-100
             saDuplicateUser: "You have already verified your identity. To edit, please contact HR.",
             saDuplicateEmpId: "This ID No. has been registered. Please contact HR.",
             saInvalidEmpId: "Your ID No. was not found in the system. Please check again.",
-CH            saConsentRequired: "Error: Please check the consent box before saving.",
+            saConsentRequired: "Error: Please check the consent box before saving.",
             saGenericErrorTitle: "An Error Occurred!",
             saGenericErrorText: "Could not save data: "
         },
@@ -259,7 +260,7 @@ CH            saConsentRequired: "Error: Please check the consent box befo
             saErrorTitle: "เกิดข้อผิดพลาด",
             saConnectionError: "ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้",
             saInvalidIdTitle: "เลขบัตร/พาสปอร์ตไม่ถูกต้อง",
-            saInvalidIdText: "กรุณากรอกเลขบัตร/พาสปอร์ตที่ถูกต้องและรอให้ระบบตรวจสอบชื่อ-สกุลให้เรียบ ร้อยก่อน",
+            saInvalidIdText: "กรุณากรอกเลขบัตร/พาสปอร์ตที่ถูกต้องและรอให้ระบบตรวจสอบชื่อ-สกุลให้เรียบร้อยก่อน",
             saIncompleteDataTitle: "ข้อมูลไม่ครบถ้วน",
             saIncompleteDataText: "กรุณากรอกข้อมูลและทำเครื่องหมายยินยอมให้ครบถ้วนก่อน",
             saSavingTitle: "กำลังตรวจสอบและบันทึกข้อมูล...",
@@ -297,7 +298,7 @@ CH            saConsentRequired: "Error: Please check the consent box befo
             saIncompleteDataText: "ကျေးဇူးပြု၍ အချက်အလက်အားလုံးကို ဖြည့်စွက်ပြီး သိမ်းဆည်းခြင်းမပြုမီ သဘောတူညီချက် ပေးပါ။",
             saSavingTitle: "အချက်အလက်များကို စစ်ဆေးပြီး သိမ်းဆည်းနေသည်...",
             saSavingText: "ကျေးဇူးပြု၍ ခဏစောင့်ပါ။",
-  S           saSuccessTitle: "အချက်အလက် သိမ်းဆည်းခြင်း အောင်မြင်ပါသည်!",
+            saSuccessTitle: "အချက်အလက် သိမ်းဆည်းခြင်း အောင်မြင်ပါသည်!",
             saSuccessText: "သင်၏ အချက်အလက်များကို သိမ်းဆည်းပြီးပါပြီ။",
             saDuplicateUser: "သင်သည် သင်၏ အထောက်အထားကို အတည်ပြုပြီးသား ဖြစ်ပါသည်။ ပြင်ဆင်လိုပါက HR သို့ ဆက်သွယ်ပါ။",
             saDuplicateEmpId: "ဤ ID နံပါတ်ကို မှတ်ပုံတင်ပြီးသား ဖြစ်ပါသည်။ HR သို့ ဆက်သွယ်ပါ။",
@@ -316,12 +317,12 @@ CH            saConsentRequired: "Error: Please check the consent box befo
             placeholderFullName: "Họ và Tên (sẽ tự động điền sau khi nhập ID)",
             consentTitle: " Xác nhận điều khoản",
             consentLabel: "Việc xác minh này là để nhận tin tức công ty và các lợi ích khác qua Line: MCIC_HR_NEWS.",
-css            submitButton: "Lưu dữ liệu",
+            submitButton: "Lưu dữ liệu",
             saVerifying: "Đang xác minh ID...",
             saRegisteredTitle: "Đã đăng ký",
             saRegisteredText: "Số ID này đã được đăng ký trong hệ thống.",
             saNotFoundTitle: "Không tìm thấy",
-  ":          saNotFoundText: "Không tìm thấy Số ID này. Vui lòng kiểm tra và thử lại.",
+            saNotFoundText: "Không tìm thấy Số ID này. Vui lòng kiểm tra và thử lại.",
             saErrorTitle: "Đã xảy ra lỗi",
             saConnectionError: "Không thể kết nối đến máy chủ.",
             saInvalidIdTitle: "Số ID không hợp lệ",
@@ -332,12 +333,12 @@ css            submitButton: "Lưu dữ liệu",
             saSavingText: "Vui lòng đợi.",
             saSuccessTitle: "Lưu dữ liệu thành công!",
             saSuccessText: "Thông tin của bạn đã được lưu.",
-  G           saDuplicateUser: "Bạn đã xác minh danh tính. Để chỉnh sửa, vui lòng liên hệ phòng Nhân sự.",
+            saDuplicateUser: "Bạn đã xác minh danh tính. Để chỉnh sửa, vui lòng liên hệ phòng Nhân sự.",
             saDuplicateEmpId: "Số ID này đã được đăng ký. Vui lòng liên hệ phòng Nhân sự.",
             saInvalidEmpId: "Không tìm thấy Số ID của bạn trong hệ thống. Vui lòng kiểm tra lại.",
             saConsentRequired: "Lỗi: Vui lòng đánh dấu vào ô đồng ý trước khi lưu.",
             saGenericErrorTitle: "Đã xảy ra lỗi!",
-  g           saGenericErrorText: "Không thể lưu dữ liệu: "
+            saGenericErrorText: "Không thể lưu dữ liệu: "
         },
         cn: { // Chinese (Simplified)
             pageTitle: "员工验证",
@@ -352,19 +353,19 @@ css            submitButton: "Lưu dữ liệu",
             submitButton: "保存数据",
             saVerifying: "正在验证ID...",
             saRegisteredTitle: "已注册",
-CSS            saRegisteredText: "此ID号已在系统中注册。",
+            saRegisteredText: "此ID号已在系统中注册。",
             saNotFoundTitle: "未找到",
             saNotFoundText: "未找到此ID号。请检查后重试。",
             saErrorTitle: "发生错误",
             saConnectionError: "无法连接到服务器。",
             saInvalidIdTitle: "无效的ID号",
-Such            saInvalidIdText: "请输入有效的ID号并等待姓名验证。",
+            saInvalidIdText: "请输入有效的ID号并等待姓名验证。",
             saIncompleteDataTitle: "信息不完整",
             saIncompleteDataText: "保存前，请填写所有字段并表示同意。",
             saSavingTitle: "正在验证和保存数据...",
             saSavingText: "请稍候。",
             saSuccessTitle: "数据保存成功！",
-Example:            saSuccessText: "您的信息已保存。",
+            saSuccessText: "您的信息已保存。",
             saDuplicateUser: "您已经验证了身份。如需编辑，请联系人力资源部。",
             saDuplicateEmpId: "此ID号已被注册。请联系人力资源部。",
             saInvalidEmpId: "在系统中找不到您的ID号。请再次检查。",
@@ -373,11 +374,12 @@ Example:            saSuccessText: "您的信息已保存。",
             saGenericErrorText: "无法保存数据："
         }
     };
+    // ▲▲▲======= END: MODIFIED TRANSLATIONS (CLEANED) =======▲▲▲
 
     let currentLangTexts = {};
 
     function setLanguage(lang) {
-G        if (!translations[lang]) return;
+        if (!translations[lang]) return;
         localStorage.setItem('userLanguage', lang);
         currentLangTexts = translations[lang];
 
@@ -390,7 +392,7 @@ G        if (!translations[lang]) return;
                     el.textContent = currentLangTexts[key];
                 } else if(el.dataset.langKey === 'consentTitle'){
                     el.innerHTML = `<i class="fa-solid fa-shield-halved"></i>${currentLangTexts[key]}`;
-section                } 
+                } 
                 else {
                     el.textContent = currentLangTexts[key];
                 }
@@ -398,12 +400,12 @@ section                } 
         });
 
         document.getElementById('IdEmployee').placeholder = currentLangTexts.placeholderEmployeeId;
-s        document.getElementById('fullName').placeholder = currentLangTexts.placeholderFullName;
+        document.getElementById('fullName').placeholder = currentLangTexts.placeholderFullName;
     }
 
     async function main() {
         await liff.init({ liffId: "2008254230-mXa6NopA" }); // ◀️ **สำคัญ:** ใส่ LIFF ID ของคุณที่นี่
-Services        if (!liff.isLoggedIn()) {
+        if (!liff.isLoggedIn()) {
             liff.login();
         } else {
             const profile = await liff.getProfile();
@@ -434,7 +436,7 @@ Services        if (!liff.isLoggedIn()) {
 
         if (employeeId === '') {
             return;
-        }
+  _     }
 
         const formData = new FormData();
         formData.append('action', 'getEmployeeName');
@@ -447,14 +449,14 @@ Services        if (!liff.isLoggedIn()) {
         });
 
         fetch(scriptURL, { method: 'POST', body: formData })
-  Z           .then(response => response.json())
+            .then(response => response.json())
             .then(data => {
                 Swal.close();
                 if (data.result === 'success') {
                     fullNameInput.value = data.name;
                     isIdVerified = true;
                 } else if (data.error === 'duplicate_employee_id') {
-a                    Swal.fire(currentLangTexts.saRegisteredTitle, currentLangTexts.saRegisteredText, 'warning');
+                    Swal.fire(currentLangTexts.saRegisteredTitle, currentLangTexts.saRegisteredText, 'warning');
                 } else {
                     Swal.fire(currentLangTexts.saNotFoundTitle, currentLangTexts.saNotFoundText, 'error');
                 }
@@ -462,9 +464,9 @@ a                    Swal.fire(currentLangTexts.saRegisteredTitle, cur
             })
             .catch(error => {
                 Swal.fire(currentLangTexts.saErrorTitle, currentLangTexts.saConnectionError, 'error');
-CSS                console.error('Error fetching employee name:', error);
+                console.error('Error fetching employee name:', error);
                 isIdVerified = false;
-                updateButtonState();
+    D           updateButtonState();
             });
     });
     
@@ -472,7 +474,7 @@ CSS                console.error('Error fetching employee name:', error)
             if (isIdVerified) {
             isIdVerified = false;
             fullNameInput.value = '';
-section            updateButtonState();
+            updateButtonState();
         }
     });
 
@@ -482,7 +484,7 @@ section            updateButtonState();
 
     form.addEventListener('submit', e => {
         e.preventDefault();
-    A    
+        
         if (!isIdVerified) {
             Swal.fire(currentLangTexts.saInvalidIdTitle, currentLangTexts.saInvalidIdText, 'warning');
             return;
@@ -490,7 +492,7 @@ section            updateButtonState();
 
         if (!form.checkValidity()) {
             Swal.fire(currentLangTexts.saIncompleteDataTitle, currentLangTexts.saIncompleteDataText, 'warning');
-A            return;
+            return;
         }
         
         Swal.fire({
@@ -498,7 +500,7 @@ A            return;
             text: currentLangTexts.saSavingText,   
             allowOutsideClick: false,
             didOpen: () => { Swal.showLoading(); }
-section        });
+        });
         
         const formData = new FormData(form);
         formData.append('action', 'register'); 
@@ -507,19 +509,19 @@ section        });
             .then(response => response.json())
             .then(data => {
                 if (data.result === 'success') {
-G                    Swal.fire({
+                    Swal.fire({
                         position: 'center', icon: 'success', 
                         title: currentLangTexts.saSuccessTitle,
-                        text: currentLangTexts.saSuccessText,s  
+                        text: currentLangTexts.saSuccessText,  
                         showConfirmButton: false, timer: 2500
                     }).then(() => {
                         if(liff.isInClient()) {
                             liff.closeWindow();
                         } else {
                             window.location.reload();
-Examples:                        }
+                        }
                     });
-      We           } else if (data.error === 'duplicate_user') {
+                } else if (data.error === 'duplicate_user') {
                     Swal.fire(currentLangTexts.saRegisteredTitle, currentLangTexts.saDuplicateUser, 'warning');
                 } else if (data.error === 'duplicate_employee_id') {
                     Swal.fire(currentLangTexts.saRegisteredTitle, currentLangTexts.saDuplicateEmpId, 'error');
@@ -527,20 +529,20 @@ Examples:                        }
                     Swal.fire(currentLangTexts.saInvalidIdTitle, currentLangTexts.saInvalidEmpId, 'error');
                 } else if (data.error === 'consent_required') {
                     Swal.fire(currentLangTexts.saErrorTitle, currentLangTexts.saConsentRequired, 'error');
-s                } else {
+                } else {
                     throw new Error(data.error || 'Something went wrong');
                 }
             })
             .catch(error => {
                 console.error('Error!', error.message);
-                Swal.fire(currentLangTexts.saGenericErrorTitle, `${currentLangTexts.saGenericErrorText}${error.message}`, 'error');
+A                Swal.fire(currentLangTexts.saGenericErrorTitle, `${currentLangTexts.saGenericErrorText}${error.message}`, 'error');
             });
     });
 
     // --- MODIFIED: Update logic to work with the select dropdown on page load ---
     document.addEventListener('DOMContentLoaded', () => {
         const savedLang = localStorage.getItem('userLanguage') || 'th'; // Default to Thai
-        document.getElementById('languageSelector').value = savedLang; // Set dropdown value
+Services        document.getElementById('languageSelector').value = savedLang; // Set dropdown value
         setLanguage(savedLang); // Apply translations
     });
 
