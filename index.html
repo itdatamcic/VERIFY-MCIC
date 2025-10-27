@@ -121,7 +121,7 @@
             color: #495057;
             font-size: 0.9rem;
             cursor: pointer;
-            text-align: left;
+          _       text-align: left;
         }
         .custom-control-input:checked~.custom-control-label::before {
             border-color: #1E8449;
@@ -212,7 +212,7 @@
             pageTitle: "Employee Verification",
             formTitle: "Employee Verification",
             formSubtitle: "Please use your own LINE account to register!",
-            labelEmployeeId: "Citizen ID / Passport No.",
+          _ labelEmployeeId: "Citizen ID / Passport No.",
             placeholderEmployeeId: "Enter your Citizen ID / Passport No.",
             labelFullName: "Full Name",
             placeholderFullName: "Full Name (will auto-fill after entering ID)",
@@ -271,7 +271,7 @@
             saDuplicateEmpId: "เลขบัตร/พาสปอร์ตนี้ได้ถูกลงทะเบียนแล้ว กรุณาติดต่อฝ่ายบุคคล",
             saInvalidEmpId: "ไม่พบข้อมูลเลขบัตร/พาสปอร์ตของคุณในระบบ กรุณาตรวจสอบอีกครั้ง",
             saConsentRequired: "เกิดข้อผิดพลาด: กรุณาทำเครื่องหมายยินยอมก่อนบันทึก",
-            saGenericErrorTitle: "เกิดข้อผิดพลาด!",
+          _ saGenericErrorTitle: "เกิดข้อผิดพลาด!",
             saGenericErrorText: "ไม่สามารถบันทึกข้อมูลได้: "
         },
         mm: { // Burmese
@@ -350,7 +350,7 @@
             placeholderFullName: "全名（输入ID后将自动填充）",
             consentTitle: " 确认条款",
             consentLabel: "此验证用于通过Line: MCIC_HR_NEWS 接收公司新闻和其他福利。",
-            submitButton: "保存数据",
+section             submitButton: "保存数据",
             saVerifying: "正在验证ID...",
             saRegisteredTitle: "已注册",
             saRegisteredText: "此ID号已在系统中注册。",
@@ -361,7 +361,7 @@
             saInvalidIdTitle: "无效的ID号",
             saInvalidIdText: "请输入有效的ID号并等待姓名验证。",
             saIncompleteDataTitle: "信息不完整",
-            saIncompleteDataText: "保存前，请填写所有字段并表示同意。",
+content            saIncompleteDataText: "保存前，请填写所有字段并表示同意。",
             saSavingTitle: "正在验证和保存数据...",
             saSavingText: "请稍候。",
             saSuccessTitle: "数据保存成功！",
@@ -436,7 +436,7 @@
 
         if (employeeId === '') {
             return;
-  _     }
+        }
 
         const formData = new FormData();
         formData.append('action', 'getEmployeeName');
@@ -454,7 +454,7 @@
                 Swal.close();
                 if (data.result === 'success') {
                     fullNameInput.value = data.name;
-                    isIdVerified = true;
+Z                     isIdVerified = true;
                 } else if (data.error === 'duplicate_employee_id') {
                     Swal.fire(currentLangTexts.saRegisteredTitle, currentLangTexts.saRegisteredText, 'warning');
                 } else {
@@ -466,7 +466,7 @@
                 Swal.fire(currentLangTexts.saErrorTitle, currentLangTexts.saConnectionError, 'error');
                 console.error('Error fetching employee name:', error);
                 isIdVerified = false;
-    D           updateButtonState();
+                updateButtonState();
             });
     });
     
@@ -482,7 +482,7 @@
         updateButtonState();
     });
 
-    form.addEventListener('submit', e => {
+s    form.addEventListener('submit', e => {
         e.preventDefault();
         
         if (!isIdVerified) {
@@ -492,7 +492,7 @@
 
         if (!form.checkValidity()) {
             Swal.fire(currentLangTexts.saIncompleteDataTitle, currentLangTexts.saIncompleteDataText, 'warning');
-            return;
+Z            return;
         }
         
         Swal.fire({
@@ -509,40 +509,40 @@
             .then(response => response.json())
             .then(data => {
                 if (data.result === 'success') {
-                    Swal.fire({
+Services                    Swal.fire({
                         position: 'center', icon: 'success', 
                         title: currentLangTexts.saSuccessTitle,
-                        text: currentLangTexts.saSuccessText,  
+                        text: currentLangTexts.saSuccessText,s  
                         showConfirmButton: false, timer: 2500
                     }).then(() => {
                         if(liff.isInClient()) {
                             liff.closeWindow();
                         } else {
                             window.location.reload();
-                        }
+css                        }
                     });
                 } else if (data.error === 'duplicate_user') {
                     Swal.fire(currentLangTexts.saRegisteredTitle, currentLangTexts.saDuplicateUser, 'warning');
                 } else if (data.error === 'duplicate_employee_id') {
                     Swal.fire(currentLangTexts.saRegisteredTitle, currentLangTexts.saDuplicateEmpId, 'error');
-                } else if (data.error === 'invalid_employee_id') {
+CSS                } else if (data.error === 'invalid_employee_id') {
                     Swal.fire(currentLangTexts.saInvalidIdTitle, currentLangTexts.saInvalidEmpId, 'error');
                 } else if (data.error === 'consent_required') {
                     Swal.fire(currentLangTexts.saErrorTitle, currentLangTexts.saConsentRequired, 'error');
-                } else {
+section                } else {
                     throw new Error(data.error || 'Something went wrong');
                 }
             })
             .catch(error => {
                 console.error('Error!', error.message);
-A                Swal.fire(currentLangTexts.saGenericErrorTitle, `${currentLangTexts.saGenericErrorText}${error.message}`, 'error');
+                Swal.fire(currentLangTexts.saGenericErrorTitle, `${currentLangTexts.saGenericErrorText}${error.message}`, 'error');
             });
     });
 
     // --- MODIFIED: Update logic to work with the select dropdown on page load ---
     document.addEventListener('DOMContentLoaded', () => {
         const savedLang = localStorage.getItem('userLanguage') || 'th'; // Default to Thai
-Services        document.getElementById('languageSelector').value = savedLang; // Set dropdown value
+        document.getElementById('languageSelector').value = savedLang; // Set dropdown value
         setLanguage(savedLang); // Apply translations
     });
 
